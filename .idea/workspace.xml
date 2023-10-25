@@ -4,23 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8730fa2a-a8c0-4446-aa44-708441f24bb2" name="Changes" comment="đã gửi được 2 request: 1 head request để lấy header và 1 get request để lấy file">
+    <list default="true" id="8730fa2a-a8c0-4446-aa44-708441f24bb2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/FragmentDownloadManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FileDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileDownloader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "HuyyCP"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;HuyyCP&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -43,7 +57,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;handleRedirect&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/huy/DUT/Main/PBL4/Work/FileDownloadBooster&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -66,7 +80,14 @@
       <workItem from="1696560225310" duration="647000" />
       <workItem from="1696753526014" duration="10000" />
       <workItem from="1697283692521" duration="2611000" />
-      <workItem from="1697288316275" duration="1704000" />
+      <workItem from="1697288316275" duration="3723000" />
+      <workItem from="1697307170171" duration="600000" />
+      <workItem from="1697351599510" duration="15571000" />
+      <workItem from="1697684111206" duration="2681000" />
+      <workItem from="1697897346306" duration="7910000" />
+      <workItem from="1697980811876" duration="3149000" />
+      <workItem from="1698077244885" duration="2185000" />
+      <workItem from="1698116270317" duration="1783000" />
     </task>
     <task id="LOCAL-00001" summary="đã gửi được 2 request: 1 head request để lấy header và 1 get request để lấy file">
       <option name="closed" value="true" />
@@ -84,7 +105,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697288572128</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="init handle redirect branch">
+      <option name="closed" value="true" />
+      <created>1697291308463</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1697291308463</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -104,6 +133,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
     <MESSAGE value="đã gửi được 2 request: 1 head request để lấy header và 1 get request để lấy file" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="init handle redirect branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="init handle redirect branch" />
   </component>
 </project>
