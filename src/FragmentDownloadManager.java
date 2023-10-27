@@ -3,19 +3,22 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
-import java.net.UnknownHostException;
-import java.sql.SQLOutput;
+import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 
 public class FragmentDownloadManager {
-    URL url; // url chua file, xu li redirect
+    URL url; // Unhandled URL
+    int numThreads = 10;
 
     public FragmentDownloadManager(String urlStr) throws MalformedURLException {
         this.url = new URL(urlStr);
     }
     public void HandleRedirectURL() {
-        String responseCode = ""; // response code
+        System.out.println("Handling redirect URL...");
+        String responseCode = ""; // Response code
         do {
             try {
+                // Create socket and stream
                 Socket socket;
                 if(url.getProtocol().equals("https")) {
                     socket = SSLSocketFactory.getDefault().createSocket(url.getHost(), 443);
@@ -25,51 +28,45 @@ public class FragmentDownloadManager {
                 BufferedOutputStream outputStream = new BufferedOutputStream(socket.getOutputStream());
                 BufferedInputStream inputStream = new BufferedInputStream(socket.getInputStream());
 
-                String request;
+                // Create a http HEAD request
+                String request = "HEAD " + url.getPath() + " HTTP/1.1\r\n" +
+                                 "Host: " + url.getHost() + "\r\n\r\n";
 
-                if(responseCode.equals("303")) {
-                    String username = "102210105";
-                    String password = "Svien@21";
-                    request = "POST " + url.getPath() + " HTTP/1.1\r\n" +
-                            "Host: " + url.getHost() + "\r\n" +
-                            "Content-Type: application/x-www-form-urlencoded\r\n" +
-                            "Content-length: " + (username.length() + password.length() + 19) + "\r\n\r\n" +
-                            "username=" + username + "&password=" + password;
-                } else {
-                    request = "HEAD " + url.getPath() + " HTTP/1.1\r\n" +
-                            "Host: " + url.getHost() + "\r\n\r\n";
-                }
-                System.out.println(request);
+                // Send request to server
                 IOStreamHelper.sendRequest(outputStream, request);
-                String response = IOStreamHelper.receiveResponse(inputStream);
-                System.out.println(response);
+
+                // Read response from HEAD request
+                Map<String, String> headers = IOStreamHelper.receiveHeader(inputStream);
+
+                // Close connection
                 inputStream.close();
                 outputStream.close();
                 socket.close();
 
-
-                responseCode = response.substring(9, response.indexOf(" ", 9));
-//                System.out.println("responseCode = " + responseCode);
+                // Handle redirect
+                String statusLine = headers.get("Status");
+                responseCode = statusLine.substring(9, statusLine.indexOf(" ", 9));
                 if(responseCode.equals("200")) { break;}
                 else if(responseCode.startsWith("3")) {
-                    int pos = response.indexOf("Location");
-                    String location = response.substring(pos + 10, response.indexOf("\r\n", pos));
+                    String location = headers.get("Location").substring(10);
                     url = new URL(location);
                 }
             } catch (IOException exception) {
-                exception.printStackTrace();
+                System.out.println("Handle redirect failed");
             }
         } while(true);
-
     }
 
     public void downloadFile(String savePath) throws IOException {
+        // Handle redirect URL
+        HandleRedirectURL();
+
         // Handle string URL
-        String protocol = url.getProtocol(); // get prototcol
-        String host = url.getHost(); // get host
-        String path = url.getPath(); // get path
-        String filename = path.substring(path.lastIndexOf('/') + 1); // get file name
-        savePath += filename; // add file name to directory
+        String protocol = url.getProtocol(); // Get prototcol
+        String host = url.getHost(); // Get host
+        String path = url.getPath(); // Get path
+        String filename = path.substring(path.lastIndexOf('/') + 1); // Get file name
+        savePath += filename; // Add file name to directory
 
         // Create a socket connection
         try (Socket socket = protocol.equals("https") ? SSLSocketFactory.getDefault().createSocket(host, 443) : new Socket(host, 80);
@@ -84,24 +81,36 @@ public class FragmentDownloadManager {
             IOStreamHelper.sendRequest(outputStream, headRequest);
 
             // Read response from HEAD request
-            String headResponse = IOStreamHelper.receiveResponse(inputStream);
-            System.out.println(headResponse);
+            Map<String, String> headers = IOStreamHelper.receiveHeader(inputStream);
+            System.out.println("Status: " + headers.get("Status") + "\nContent-length: " + headers.get("Content-Length") + "\r\n");
 
+            System.out.println("Downloading file...");
+            CountDownLatch latch = new CountDownLatch(numThreads);
+            long fileSize = Long.parseLong(headers.get("Content-Length"));
+            long partSize = fileSize / numThreads;
+            for (int i = 0; i < numThreads; i++) {
+                // Range to download
+                long startByte = i * partSize;
+                long endByte = (i == numThreads - 1) ? fileSize - 1 : startByte + partSize - 1;
 
-            // Create a http GET request
-            String request = "GET " + path + " HTTP/1.1\r\n" +
-                    "Host: " + host + "\r\n\r\n";
+                // Download by range
+                try {
+                    FragmentDownloader fragmentDownloader = new FragmentDownloader(i + 1, url, savePath, startByte, endByte, latch);
+                    fragmentDownloader.startDownload();
+                } catch (InterruptedException e) {
+                    System.out.println("Thread " + (i + 1) + " is interrupted");
+                }
+            }
 
-            // Send request to server
-            IOStreamHelper.sendRequest(outputStream, request);
-
-            // Read response from GET request and save the file
-            IOStreamHelper.receiveResponse(inputStream, savePath);
-
-            System.out.println("File has been successfully downloaded.");
-
+            try {
+                // Wait for all threads to finish
+                latch.await();
+                System.out.println("File has been successfully downloaded.");
+            } catch (InterruptedException e) {
+                System.out.println("Threads interrupted");
+            }
         } catch (IOException exception) {
-
+            System.out.println("Connection closed");
         }
     }
 }

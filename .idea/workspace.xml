@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8730fa2a-a8c0-4446-aa44-708441f24bb2" name="Changes" comment="cần xử lí 303">
+    <list default="true" id="8730fa2a-a8c0-4446-aa44-708441f24bb2" name="Changes" comment="đã tải được file dùng đa luồng, đôi khi file bị lỗi nhưng vẫn xem được, cần xử lí 303, cần tối ưu đọc req">
+      <change afterPath="$PROJECT_DIR$/src/FragmentDownloader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FileDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileDownloader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FragmentDownloadManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FragmentDownloadManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IOStreamHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IOStreamHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,8 +59,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "handleRedirect",
-    "last_opened_file_path": "D:/huy/DUT/Main/LapTrinhMang/Work/Buoi10",
+    "git-widget-placeholder": "multiThread",
+    "last_opened_file_path": "D:/huy/DUT/Main/PBL4/Work/TestDownload",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -96,6 +98,7 @@
       <workItem from="1698308906904" duration="1208000" />
       <workItem from="1698363346685" duration="23000" />
       <workItem from="1698372834020" duration="4401000" />
+      <workItem from="1698386573039" duration="23174000" />
     </task>
     <task id="LOCAL-00001" summary="đã gửi được 2 request: 1 head request để lấy header và 1 get request để lấy file">
       <option name="closed" value="true" />
@@ -151,6 +154,8 @@
     <MESSAGE value="đã gửi được 2 request: 1 head request để lấy header và 1 get request để lấy file" />
     <MESSAGE value="init handle redirect branch" />
     <MESSAGE value="cần xử lí 303" />
-    <option name="LAST_COMMIT_MESSAGE" value="cần xử lí 303" />
+    <MESSAGE value="Merge pull request #1 from HuyyCP/handleRedirect&#10;&#10;Handle redirect" />
+    <MESSAGE value="đã tải được file dùng đa luồng, đôi khi file bị lỗi nhưng vẫn xem được, cần xử lí 303, cần tối ưu đọc req" />
+    <option name="LAST_COMMIT_MESSAGE" value="đã tải được file dùng đa luồng, đôi khi file bị lỗi nhưng vẫn xem được, cần xử lí 303, cần tối ưu đọc req" />
   </component>
 </project>

@@ -1,7 +1,4 @@
-import javax.net.ssl.SSLSocketFactory;
 import java.io.*;
-import java.net.Socket;
-import java.net.URL;
 
 public class FileDownloader {
     public static void main(String[] args) {
@@ -11,15 +8,11 @@ public class FileDownloader {
         String tmpURL = "https://cuuduongthancong.com/dlf/2334741/cau-truc-du-lieu-va-giai-thuat/pham-the-bao/slides---cay.pdf"; // 403 forbidden
         String savePath = "D:/PBL_Storage/";
         try {
-
             FragmentDownloadManager manager  = new FragmentDownloadManager(httpsURL);
-            manager.HandleRedirectURL();
             manager.downloadFile(savePath);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-
 }
 
