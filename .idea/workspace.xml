@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8730fa2a-a8c0-4446-aa44-708441f24bb2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/FragmentDownloadManager.java" afterDir="false" />
+    <list default="true" id="8730fa2a-a8c0-4446-aa44-708441f24bb2" name="Changes" comment="cần xử lí 303">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FileDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileDownloader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FragmentDownloadManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FragmentDownloadManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,20 +52,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;handleRedirect&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/huy/DUT/Main/PBL4/Work/FileDownloadBooster&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "handleRedirect",
+    "last_opened_file_path": "D:/huy/DUT/Main/LapTrinhMang/Work/Buoi10",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -88,6 +88,14 @@
       <workItem from="1697980811876" duration="3149000" />
       <workItem from="1698077244885" duration="2185000" />
       <workItem from="1698116270317" duration="1783000" />
+      <workItem from="1698210683042" duration="1193000" />
+      <workItem from="1698226325348" duration="1905000" />
+      <workItem from="1698257145444" duration="6083000" />
+      <workItem from="1698278877398" duration="1834000" />
+      <workItem from="1698285797700" duration="1618000" />
+      <workItem from="1698308906904" duration="1208000" />
+      <workItem from="1698363346685" duration="23000" />
+      <workItem from="1698372834020" duration="4401000" />
     </task>
     <task id="LOCAL-00001" summary="đã gửi được 2 request: 1 head request để lấy header và 1 get request để lấy file">
       <option name="closed" value="true" />
@@ -113,7 +121,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697291308463</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="cần xử lí 303">
+      <option name="closed" value="true" />
+      <created>1698210734945</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1698210734945</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -134,6 +150,7 @@
     <MESSAGE value="Initial commit" />
     <MESSAGE value="đã gửi được 2 request: 1 head request để lấy header và 1 get request để lấy file" />
     <MESSAGE value="init handle redirect branch" />
-    <option name="LAST_COMMIT_MESSAGE" value="init handle redirect branch" />
+    <MESSAGE value="cần xử lí 303" />
+    <option name="LAST_COMMIT_MESSAGE" value="cần xử lí 303" />
   </component>
 </project>
