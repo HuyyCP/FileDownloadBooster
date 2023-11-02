@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8730fa2a-a8c0-4446-aa44-708441f24bb2" name="Changes" comment="đã tải được file dùng đa luồng, đôi khi file bị lỗi nhưng vẫn xem được, cần xử lí 303, cần tối ưu đọc req">
-      <change afterPath="$PROJECT_DIR$/src/FragmentDownloader.java" afterDir="false" />
+    <list default="true" id="8730fa2a-a8c0-4446-aa44-708441f24bb2" name="Changes" comment="đã đa luồng, chỉ chạy ổn với httpsURL,  đôi khi file bị lỗi nhưng vẫn xem được, đôi khi thì không, cần xử lí 303, cần tối ưu đọc req">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileDownloader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FileDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileDownloadBooster.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FragmentDownloadManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FragmentDownloadManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FragmentDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FragmentDownloader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/IOStreamHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IOStreamHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +60,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "multiThread",
-    "last_opened_file_path": "D:/huy/DUT/Main/PBL4/Work/TestDownload",
+    "last_opened_file_path": "D:/huy/DUT/Main/PBL4/Work/TestDownload_lib",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -98,7 +98,15 @@
       <workItem from="1698308906904" duration="1208000" />
       <workItem from="1698363346685" duration="23000" />
       <workItem from="1698372834020" duration="4401000" />
-      <workItem from="1698386573039" duration="23174000" />
+      <workItem from="1698386573039" duration="23916000" />
+      <workItem from="1698457174799" duration="15272000" />
+      <workItem from="1698584359578" duration="2213000" />
+      <workItem from="1698624813064" duration="1206000" />
+      <workItem from="1698637979681" duration="811000" />
+      <workItem from="1698871188502" duration="611000" />
+      <workItem from="1698884020504" duration="1346000" />
+      <workItem from="1698890791326" duration="4009000" />
+      <workItem from="1698900762343" duration="14980000" />
     </task>
     <task id="LOCAL-00001" summary="đã gửi được 2 request: 1 head request để lấy header và 1 get request để lấy file">
       <option name="closed" value="true" />
@@ -132,7 +140,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698210734945</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="đã đa luồng, chỉ chạy ổn với httpsURL,  đôi khi file bị lỗi nhưng vẫn xem được, đôi khi thì không, cần xử lí 303, cần tối ưu đọc req">
+      <option name="closed" value="true" />
+      <created>1698436285918</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1698436285918</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -156,6 +172,7 @@
     <MESSAGE value="cần xử lí 303" />
     <MESSAGE value="Merge pull request #1 from HuyyCP/handleRedirect&#10;&#10;Handle redirect" />
     <MESSAGE value="đã tải được file dùng đa luồng, đôi khi file bị lỗi nhưng vẫn xem được, cần xử lí 303, cần tối ưu đọc req" />
-    <option name="LAST_COMMIT_MESSAGE" value="đã tải được file dùng đa luồng, đôi khi file bị lỗi nhưng vẫn xem được, cần xử lí 303, cần tối ưu đọc req" />
+    <MESSAGE value="đã đa luồng, chỉ chạy ổn với httpsURL,  đôi khi file bị lỗi nhưng vẫn xem được, đôi khi thì không, cần xử lí 303, cần tối ưu đọc req" />
+    <option name="LAST_COMMIT_MESSAGE" value="đã đa luồng, chỉ chạy ổn với httpsURL,  đôi khi file bị lỗi nhưng vẫn xem được, đôi khi thì không, cần xử lí 303, cần tối ưu đọc req" />
   </component>
 </project>

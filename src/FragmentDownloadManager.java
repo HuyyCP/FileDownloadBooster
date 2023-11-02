@@ -8,7 +8,7 @@ import java.util.concurrent.CountDownLatch;
 
 public class FragmentDownloadManager {
     URL url; // Unhandled URL
-    int numThreads = 10;
+    final static int numThreads = 10;
 
     public FragmentDownloadManager(String urlStr) throws MalformedURLException {
         this.url = new URL(urlStr);
@@ -17,26 +17,20 @@ public class FragmentDownloadManager {
         System.out.println("Handling redirect URL...");
         String responseCode = ""; // Response code
         do {
-            try {
-                // Create socket and stream
-                Socket socket;
-                if(url.getProtocol().equals("https")) {
-                    socket = SSLSocketFactory.getDefault().createSocket(url.getHost(), 443);
-                } else {
-                    socket = new Socket(url.getHost(), 80);
-                }
-                BufferedOutputStream outputStream = new BufferedOutputStream(socket.getOutputStream());
-                BufferedInputStream inputStream = new BufferedInputStream(socket.getInputStream());
+            try (Socket socket = url.getProtocol().equals("https") ? SSLSocketFactory.getDefault().createSocket(url.getHost(), 443) : new Socket(url.getHost(), 80);
+                 BufferedInputStream inputStream = new BufferedInputStream(socket.getInputStream());
+                 BufferedOutputStream outputStream = new BufferedOutputStream(socket.getOutputStream())) {
 
                 // Create a http HEAD request
-                String request = "HEAD " + url.getPath() + " HTTP/1.1\r\n" +
-                                 "Host: " + url.getHost() + "\r\n\r\n";
 
+                String request = "HEAD " + url.getPath() + " HTTP/1.1\r\n" +
+                        "Host: " + url.getHost() + "\r\n\r\n";
                 // Send request to server
                 IOStreamHelper.sendRequest(outputStream, request);
 
                 // Read response from HEAD request
                 Map<String, String> headers = IOStreamHelper.receiveHeader(inputStream);
+                System.out.println(headers);
 
                 // Close connection
                 inputStream.close();
@@ -44,14 +38,15 @@ public class FragmentDownloadManager {
                 socket.close();
 
                 // Handle redirect
-                String statusLine = headers.get("Status");
-                responseCode = statusLine.substring(9, statusLine.indexOf(" ", 9));
+                String statusLine = headers.get("status");
+                responseCode = statusLine.substring(statusLine.indexOf(" ") + 1, statusLine.indexOf(" ") + 4);
                 if(responseCode.equals("200")) { break;}
                 else if(responseCode.startsWith("3")) {
-                    String location = headers.get("Location").substring(10);
+                    String location = headers.get("location");
                     url = new URL(location);
                 }
             } catch (IOException exception) {
+                System.out.println(exception.getMessage());
                 System.out.println("Handle redirect failed");
             }
         } while(true);
@@ -60,6 +55,7 @@ public class FragmentDownloadManager {
     public void downloadFile(String savePath) throws IOException {
         // Handle redirect URL
         HandleRedirectURL();
+        System.out.println("Final URL: " + url);
 
         // Handle string URL
         String protocol = url.getProtocol(); // Get prototcol
@@ -82,11 +78,10 @@ public class FragmentDownloadManager {
 
             // Read response from HEAD request
             Map<String, String> headers = IOStreamHelper.receiveHeader(inputStream);
-            System.out.println("Status: " + headers.get("Status") + "\nContent-length: " + headers.get("Content-Length") + "\r\n");
 
-            System.out.println("Downloading file...");
+            System.out.println("\nDownloading file...");
             CountDownLatch latch = new CountDownLatch(numThreads);
-            long fileSize = Long.parseLong(headers.get("Content-Length"));
+            long fileSize = Long.parseLong(headers.get("content-length"));
             long partSize = fileSize / numThreads;
             for (int i = 0; i < numThreads; i++) {
                 // Range to download
@@ -111,6 +106,6 @@ public class FragmentDownloadManager {
             }
         } catch (IOException exception) {
             System.out.println("Connection closed");
-        }
+        } 
     }
 }
