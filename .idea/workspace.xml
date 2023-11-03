@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8730fa2a-a8c0-4446-aa44-708441f24bb2" name="Changes" comment="đã đa luồng, chỉ chạy ổn với httpsURL,  đôi khi file bị lỗi nhưng vẫn xem được, đôi khi thì không, cần xử lí 303, cần tối ưu đọc req">
+    <list default="true" id="8730fa2a-a8c0-4446-aa44-708441f24bb2" name="Changes" comment="optimize IOStreamHelper, not handle redirect yet">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileDownloadBooster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FileDownloadBooster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileDownloadBooster.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FragmentDownloadManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FragmentDownloadManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FragmentDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FragmentDownloader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/IOStreamHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IOStreamHelper.java" afterDir="false" />
@@ -60,7 +60,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "multiThread",
-    "last_opened_file_path": "D:/huy/DUT/Main/PBL4/Work/TestDownload_lib",
+    "last_opened_file_path": "D:/huy/DUT/Main/PBL4/Internet-Download-Manager",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -106,7 +106,7 @@
       <workItem from="1698871188502" duration="611000" />
       <workItem from="1698884020504" duration="1346000" />
       <workItem from="1698890791326" duration="4009000" />
-      <workItem from="1698900762343" duration="14980000" />
+      <workItem from="1698900762343" duration="33801000" />
     </task>
     <task id="LOCAL-00001" summary="đã gửi được 2 request: 1 head request để lấy header và 1 get request để lấy file">
       <option name="closed" value="true" />
@@ -148,7 +148,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698436285918</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="optimize IOStreamHelper, not handle redirect yet">
+      <option name="closed" value="true" />
+      <created>1698942124043</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1698942124043</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,6 +181,7 @@
     <MESSAGE value="Merge pull request #1 from HuyyCP/handleRedirect&#10;&#10;Handle redirect" />
     <MESSAGE value="đã tải được file dùng đa luồng, đôi khi file bị lỗi nhưng vẫn xem được, cần xử lí 303, cần tối ưu đọc req" />
     <MESSAGE value="đã đa luồng, chỉ chạy ổn với httpsURL,  đôi khi file bị lỗi nhưng vẫn xem được, đôi khi thì không, cần xử lí 303, cần tối ưu đọc req" />
-    <option name="LAST_COMMIT_MESSAGE" value="đã đa luồng, chỉ chạy ổn với httpsURL,  đôi khi file bị lỗi nhưng vẫn xem được, đôi khi thì không, cần xử lí 303, cần tối ưu đọc req" />
+    <MESSAGE value="optimize IOStreamHelper, not handle redirect yet" />
+    <option name="LAST_COMMIT_MESSAGE" value="optimize IOStreamHelper, not handle redirect yet" />
   </component>
 </project>
