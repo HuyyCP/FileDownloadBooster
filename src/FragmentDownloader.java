@@ -2,26 +2,23 @@ import javax.net.ssl.SSLSocketFactory;
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
-import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Callable;
 
-public class FragmentDownloader implements Runnable {
+public class FragmentDownloader implements Callable<Long> {
     int threadNumber;
     URL url;
     String savePath;
     long startByte;
     long endByte;
-    Thread thread;
-    CountDownLatch latch;
-    public FragmentDownloader(int threadNumber, URL url, String savePath, long startByte, long endByte, CountDownLatch latch) {
+    public FragmentDownloader(int threadNumber, URL url, String savePath, long startByte, long endByte) {
         this.threadNumber = threadNumber;
         this.url = url;
         this.savePath = savePath;
         this.startByte = startByte;
         this.endByte = endByte;
-        this.latch = latch;
     }
     @Override
-    public void run() {
+    public Long call() {
         String protocol = url.getProtocol(); // Get prototcol
         String host = url.getHost(); // Get host
         String path = url.getPath(); // Get path
@@ -30,8 +27,8 @@ public class FragmentDownloader implements Runnable {
         try (Socket socket = protocol.equals("https") ? SSLSocketFactory.getDefault().createSocket(host, 443) : new Socket(host, 80);
              BufferedInputStream inputStream = new BufferedInputStream(socket.getInputStream());
              BufferedOutputStream outputStream = new BufferedOutputStream(socket.getOutputStream());
-             RandomAccessFile file = new RandomAccessFile(savePath, "rw")) {
-
+             RandomAccessFile file = new RandomAccessFile(savePath, "rw"))
+        {
             // Create request
             String getRequest = "GET " + path + " HTTP/1.1\r\n" +
                     "Host: " + host + "\r\n" +
@@ -49,16 +46,11 @@ public class FragmentDownloader implements Runnable {
             inputStream.close();
             outputStream.close();
             file.close();
-            System.out.println("\u001B[32m" + "Thread " + threadNumber + " done: " + totalBytesRead + " bytes" + "\u001B[0m");
-            latch.countDown();
+            System.out.println("\u001B[32m" + "Thread " + threadNumber + " finished: " + totalBytesRead + " bytes" + "\u001B[0m");
+            return totalBytesRead;
         } catch (IOException exception) {
             System.out.println("Thread " + threadNumber + " stopped");
         }
-    }
-    public void startDownload() throws InterruptedException {
-        if(this.thread == null) {
-            this.thread = new Thread(this);
-            this.thread.start();
-        }
+        return 0L;
     }
 }
