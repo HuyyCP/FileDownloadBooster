@@ -1,3 +1,5 @@
+package BLL;
+
 import javax.net.ssl.SSLSocketFactory;
 import java.io.*;
 import java.net.*;
@@ -6,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.*;
 
-public class FragmentDownloadManager {
+public class FileDownloadManager {
     private final int numThreads = 10;
     private final int corePoolSize = numThreads; // minimum number of threads run simultaneously
     private final int maximumPoolSize = numThreads * 3; // maximum number of threads run simultaneously
@@ -17,14 +19,15 @@ public class FragmentDownloadManager {
     private final RejectedExecutionHandler handler; // handle rejected execution
     private ThreadPoolExecutor executor; // multithread manager
 
-    public FragmentDownloadManager() throws MalformedURLException, URISyntaxException {
+    public FileDownloadManager() {
         this.workQueue = new ArrayBlockingQueue<>(queueSize);
         this.handler = new ThreadPoolExecutor.CallerRunsPolicy();
         this.executor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, handler);
     }
-    public URL HandleRedirectURL(String strURL) throws URISyntaxException, MalformedURLException {
-        URL url = new URI(strURL).toURL();
+    public void handleRedirectURL(FileDownloader fileDownloader) throws URISyntaxException {
         System.out.println("Handling redirect URL...");
+        URL url = fileDownloader.getURL();
+        fileDownloader.setStatus(DownloadStatus.REDIRECTING);
         String responseCode = "";
         do {
             try (Socket socket = url.getProtocol().equals("https") ? SSLSocketFactory.getDefault().createSocket(url.getHost(), 443) : new Socket(url.getHost(), 80);
@@ -61,21 +64,29 @@ public class FragmentDownloadManager {
                 System.out.println("Handle redirect failed");
             }
         } while(true);
-        return url;
+        fileDownloader.setURL(url);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        fileDownloader.setStatus(DownloadStatus.DOWNLOADING);
     }
 
-    public void downloadFile(String strURL, String savePath) throws IOException, URISyntaxException {
+    public void downloadFile(FileDownloader fileDownloader) {
         // Handle redirect URL
-        URL url =  HandleRedirectURL(strURL);
+        try {
+            handleRedirectURL(fileDownloader);
+        }  catch(URISyntaxException e) {
 
+        }
+        URL url = fileDownloader.getURL();
         System.out.println("\nFinal URL: " + url);
 
         // Handle string URL
         String protocol = url.getProtocol();
         String host = url.getHost();
         String path = url.getPath();
-        String filename = path.substring(path.lastIndexOf('/') + 1);
-        savePath += filename; // Add file name to directory
 
         // Create a socket connection
         try (Socket socket = protocol.equals("https") ? SSLSocketFactory.getDefault().createSocket(host, 443) : new Socket(host, 80);
@@ -84,7 +95,7 @@ public class FragmentDownloadManager {
         {
             // Create a http HEAD request
             String headRequest = "HEAD " + path + " HTTP/1.1\r\n" +
-                    "Host: " + host + "\r\n\r\n";
+                                   "Host: " + host + "\r\n\r\n";
 
             // Send request to server
             IOStreamHelper.sendRequest(outputStream, headRequest);
@@ -101,7 +112,8 @@ public class FragmentDownloadManager {
             System.out.println("\nDownloading file...");
             long fileSize = Long.parseLong(headers.get("content-length"));
             long partSize = fileSize / numThreads;
-
+            fileDownloader.setFileSize(fileSize);
+            
             // Multipart download
             List<Future<Long>> futures = new ArrayList<>();
             for (int i = 0; i < numThreads; i++) {
@@ -110,7 +122,8 @@ public class FragmentDownloadManager {
                 long endByte = (i == numThreads - 1) ? fileSize - 1 : startByte + partSize - 1;
 
                 // Download by range
-                FragmentDownloader fragmentDownloader = new FragmentDownloader(i + 1, url, savePath, startByte, endByte);
+                FragmentDownloader fragmentDownloader = new FragmentDownloader(i + 1, url, fileDownloader.getSavePath(), startByte, endByte - startByte + 1);
+                fragmentDownloader.addObserver(fileDownloader);
                 Future<Long> future = executor.submit(fragmentDownloader);
                 futures.add(future);
             }
@@ -127,6 +140,7 @@ public class FragmentDownloadManager {
 
             System.out.println("Total bytes read: " + totalBytesRead);
             System.out.println("File has been successfully downloaded.\n\n");
+            fileDownloader.setStatus(DownloadStatus.COMPLETED);
 //            executor.shutdown();
         } catch (IOException exception) {
             System.out.println("Connection closed");
