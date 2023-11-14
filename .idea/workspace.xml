@@ -5,11 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8730fa2a-a8c0-4446-aa44-708441f24bb2" name="Changes" comment="optimize IOStreamHelper, not handle redirect yet">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileDownloadBooster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileDownloadBooster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FragmentDownloadManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FragmentDownloadManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FragmentDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FragmentDownloader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IOStreamHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IOStreamHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileDownloadBooster.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FileDownloadBooster.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FileDownloadBooster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FileDownloadBooster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FragmentDownloadManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FileDownloadManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FragmentDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FragmentDownloader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IOStreamHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/IOStreamHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +22,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -45,29 +49,49 @@
       </UrlAndAccount>
     </option>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2WKH9FGGHhrDtIyg2BqILUpkjCg" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "multiThread",
-    "last_opened_file_path": "D:/huy/DUT/Main/PBL4/Internet-Download-Manager",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH&quot;: &quot;331&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;AddGUI&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/huy/DUT/Main/PBL4/SamplePBL/Internet-Download-Manager&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\huy\DUT\Main\PBL4\Work\FileDownloadBooster\src\Frontend" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -107,6 +131,23 @@
       <workItem from="1698884020504" duration="1346000" />
       <workItem from="1698890791326" duration="4009000" />
       <workItem from="1698900762343" duration="33801000" />
+      <workItem from="1698986678842" duration="567000" />
+      <workItem from="1698991909305" duration="3527000" />
+      <workItem from="1698995891844" duration="618000" />
+      <workItem from="1699060097454" duration="30296000" />
+      <workItem from="1699235728438" duration="297000" />
+      <workItem from="1699254679072" duration="8740000" />
+      <workItem from="1699350775018" duration="511000" />
+      <workItem from="1699371140526" duration="664000" />
+      <workItem from="1699402102129" duration="75000" />
+      <workItem from="1699420844595" duration="7204000" />
+      <workItem from="1699452656561" duration="861000" />
+      <workItem from="1699488658948" duration="612000" />
+      <workItem from="1699495462316" duration="675000" />
+      <workItem from="1699506166859" duration="41059000" />
+      <workItem from="1699692213674" duration="7975000" />
+      <workItem from="1699927765464" duration="136000" />
+      <workItem from="1699956743647" duration="701000" />
     </task>
     <task id="LOCAL-00001" summary="đã gửi được 2 request: 1 head request để lấy header và 1 get request để lấy file">
       <option name="closed" value="true" />

@@ -1,6 +1,9 @@
+package BLL;
+
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 public class FileDownloadBooster {
     public static void main(String[] args) {
@@ -20,17 +23,15 @@ public class FileDownloadBooster {
         String pngURL = "https://sample-videos.com/img/Sample-png-image-30mb.png"; // pass
         String gifURL = "https://sample-videos.com/gif/2.gif"; // pass
         String mp3URL = "https://sample-videos.com/audio/mp3/wave.mp3"; // pass
-        String zipURLpro = "http://212.183.159.230/1GB.zip"; // pass (6mb/s 5p)
+        String zipURLpro = "http://212.183.159.230/1GB.zip"; // pass (6mb/s 5p), test lan 2: 3p23s
 
-        String savePath = "D:/PBL_Storage/";
+        String savePath = "D:\\PBL_Storage\\";
         try {
-            FragmentDownloadManager manager  = new FragmentDownloadManager();
-            manager.downloadFile(pngURL, savePath);
-
-        } catch (MalformedURLException | URISyntaxException e) {
+            FileDownloadManager manager  = new FileDownloadManager();
+            FileDownloader fileDownloader = new FileDownloader(new URL(imgURL), new File(savePath));
+            manager.downloadFile(fileDownloader);
+        } catch (MalformedURLException e) {
             System.out.println("Invalid URL");
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }

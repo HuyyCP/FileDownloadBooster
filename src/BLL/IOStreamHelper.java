@@ -1,24 +1,46 @@
+package BLL;
+
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
 public class IOStreamHelper {
-    final static int bufferSize = 4096; // multiple of 4KB
+    final static int bufferSize = 4096 * 4; // multiple of 4KB
     public static Map<String,String> receiveHeader (InputStream inputStream) throws IOException {
-        String responseLine = "";
-        int bytesRead;
-        byte[] buffer = new byte[bufferSize];
-        do {
-            bytesRead = inputStream.read(buffer);
-            responseLine += new String(buffer, 0, bytesRead);
-        } while (!responseLine.contains("\r\n\r\n") && bytesRead != -1);
+        StringBuilder responseLine = new StringBuilder();
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+//        String line;
+//        while((line = reader.readLine()) != null) {
+//            if(line.trim().isEmpty()) {
+//                break;
+//            }
+//            responseLine.append(line).append("\r\n");
+//        }
 
-        responseLine = "Status: " + responseLine;
-        String[] headers = responseLine.split("\r\n");
+        int bytesRead;
+        int cntEL = 0;
+        while(true) {
+            bytesRead = inputStream.read();
+            if(bytesRead == '\n') {
+                cntEL++;
+            } else if(bytesRead == '\r') {}
+            else {
+                cntEL = 0;
+            }
+            responseLine.append((char) bytesRead);
+            if(cntEL == 2) {
+                break;
+            }
+        }
+
+        responseLine.insert(0, "Status: ");
+        String[] headers = responseLine.toString().split("\r\n");
         Map<String, String> responseHeaders = new HashMap<>();
         for(String header : headers) {
-            String[] keyval = header.split(": ");
-            responseHeaders.put(keyval[0].toLowerCase(), keyval[1]);
+            if(!header.trim().isEmpty()) {
+                String[] keyval = header.split(": ");
+                responseHeaders.put(keyval[0].toLowerCase(), keyval[1]);
+            }
         }
         return responseHeaders;
     }
