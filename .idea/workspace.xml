@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8730fa2a-a8c0-4446-aa44-708441f24bb2" name="Changes" comment="optimize IOStreamHelper, not handle redirect yet">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="8730fa2a-a8c0-4446-aa44-708441f24bb2" name="Changes" comment="add main gui">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileDownloadBooster.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FileDownloadBooster.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileDownloadBooster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FileDownloadBooster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FragmentDownloadManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FileDownloadManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FragmentDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FragmentDownloader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IOStreamHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/IOStreamHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,6 +141,8 @@
       <workItem from="1699692213674" duration="7975000" />
       <workItem from="1699927765464" duration="136000" />
       <workItem from="1699956743647" duration="701000" />
+      <workItem from="1699979212950" duration="1055000" />
+      <workItem from="1700007638237" duration="500000" />
     </task>
     <task id="LOCAL-00001" summary="đã gửi được 2 request: 1 head request để lấy header và 1 get request để lấy file">
       <option name="closed" value="true" />
@@ -197,7 +192,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698942124043</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add main gui">
+      <option name="closed" value="true" />
+      <created>1699979406661</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1699979406661</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,6 +226,7 @@
     <MESSAGE value="đã tải được file dùng đa luồng, đôi khi file bị lỗi nhưng vẫn xem được, cần xử lí 303, cần tối ưu đọc req" />
     <MESSAGE value="đã đa luồng, chỉ chạy ổn với httpsURL,  đôi khi file bị lỗi nhưng vẫn xem được, đôi khi thì không, cần xử lí 303, cần tối ưu đọc req" />
     <MESSAGE value="optimize IOStreamHelper, not handle redirect yet" />
-    <option name="LAST_COMMIT_MESSAGE" value="optimize IOStreamHelper, not handle redirect yet" />
+    <MESSAGE value="add main gui" />
+    <option name="LAST_COMMIT_MESSAGE" value="add main gui" />
   </component>
 </project>
