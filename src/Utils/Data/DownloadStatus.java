@@ -1,4 +1,4 @@
-package BLL;
+package Utils.Data;
 
 public enum DownloadStatus {
     REDIRECTING,
@@ -6,5 +6,6 @@ public enum DownloadStatus {
     DOWNLOADING,
     PAUSED,
     CANCELLED,
-    COMPLETED
+    COMPLETED,
+    ERROR
 }

@@ -1,15 +1,18 @@
 package BLL;
 
+import Utils.Data.DownloadStatus;
+import Utils.Data.IOStreamHelper;
+
 import javax.net.ssl.SSLSocketFactory;
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
 import java.util.Observable;
-import java.util.Observer;
 import java.util.concurrent.Callable;
 
 public class FragmentDownloader extends Observable implements Callable<Long> {
     private final static int bufferSize = 4096; // multiple of 4KB
+    private final int fileDownloaderID;
     private final int threadID;
     private final URL url;
     private final String savePath;
@@ -17,7 +20,9 @@ public class FragmentDownloader extends Observable implements Callable<Long> {
     private final long length;
     private long downloaded;
     private DownloadStatus downloadStatus;
-    public FragmentDownloader(int threadID, URL url, String savePath, long offset, long length) {
+
+    public FragmentDownloader(int fileDownloaderID, int threadID, URL url, String savePath, long offset, long length) {
+        this.fileDownloaderID = fileDownloaderID;
         this.threadID = threadID;
         this.url = url;
         this.savePath = savePath;
@@ -26,17 +31,33 @@ public class FragmentDownloader extends Observable implements Callable<Long> {
         this.downloaded = 0;
         this.downloadStatus = DownloadStatus.DOWNLOADING;
     }
+
+    public int getFileDownloaderID() {
+        return this.fileDownloaderID;
+    }
+
     public int getThreadID() {
         return threadID;
     }
-    public long getDownloaded() {
-        return downloaded;
-    }
+
     public DownloadStatus getStatus() {
         return downloadStatus;
     }
-    public long getProgress() {
-        return downloaded * 100 / length;
+
+    public long getStartByte() {
+        return this.offset;
+    }
+
+    public long getFragmentSize() {
+        return this.length;
+    }
+
+    public long getDownloaded() {
+        return this.downloaded;
+    }
+
+    public int getProgress() {
+        return this.length == 0 ? 0 : (int)(this.downloaded * 100 / this.length);
     }
     @Override
     public Long call() {
@@ -94,4 +115,5 @@ public class FragmentDownloader extends Observable implements Callable<Long> {
         }
         return 0L;
     }
+
 }

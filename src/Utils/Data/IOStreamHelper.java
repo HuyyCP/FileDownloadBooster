@@ -1,11 +1,12 @@
-package BLL;
+package Utils.Data;
+
+import static Utils.Data.Constants.BUFFERSIZE;
 
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
 public class IOStreamHelper {
-    final static int bufferSize = 4096 * 4; // multiple of 4KB
     public static Map<String,String> receiveHeader (InputStream inputStream) throws IOException {
         StringBuilder responseLine = new StringBuilder();
 //        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
@@ -47,7 +48,7 @@ public class IOStreamHelper {
 
     public static void receiveBody (BufferedInputStream inputStream, BufferedOutputStream outputStream) throws IOException {
         int bytesRead;
-        byte[] buffer = new byte[bufferSize];
+        byte[] buffer = new byte[BUFFERSIZE];
         while((bytesRead = inputStream.read(buffer)) != -1) {
             outputStream.write(buffer, 0, bytesRead);
         }
@@ -55,7 +56,7 @@ public class IOStreamHelper {
     public static long receiveBody(BufferedInputStream inputStream, RandomAccessFile file, long offset, long length) throws IOException {
         receiveHeader(inputStream); // skip header
 
-        byte[] buffer = new byte[bufferSize];
+        byte[] buffer = new byte[BUFFERSIZE];
         long totalBytesRead = 0;
         int bytesRead;
         file.seek(offset);

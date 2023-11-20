@@ -2,7 +2,8 @@ package GUI;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 
 public class DetailProgress extends JFrame {

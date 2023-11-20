@@ -28,7 +28,7 @@ public class FileDownloadBooster {
         String savePath = "D:\\PBL_Storage\\";
         try {
             FileDownloadManager manager  = new FileDownloadManager();
-            FileDownloader fileDownloader = new FileDownloader(new URL(imgURL), new File(savePath));
+            FileDownloader fileDownloader = new FileDownloader(1, new URL(imgURL), new File(savePath));
             manager.downloadFile(fileDownloader);
         } catch (MalformedURLException e) {
             System.out.println("Invalid URL");

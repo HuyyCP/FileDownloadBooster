@@ -6,6 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="8730fa2a-a8c0-4446-aa44-708441f24bb2" name="Changes" comment="add main gui">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileDownloadBooster.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FileDownloadBooster.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BLL/DownloadStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Data/DownloadStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BLL/FileDownloadBooster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FileDownloadBooster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BLL/FileDownloadManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FileDownloadManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BLL/FileDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FileDownloader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BLL/FragmentDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FragmentDownloader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BLL/IOStreamHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Data/IOStreamHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/DetailProgress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/DetailProgress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/DownloadsTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/DownloadsTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/MainForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/MainForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/ProgressRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/GUI/ProgressRenderer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +53,10 @@
       </UrlAndAccount>
     </option>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://C:/Program Files/Java/jdk-21/lib/src.zip!/java.base/java/io/BufferedReader.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://C:/Program Files/Java/jdk-21/lib/src.zip!/java.base/java/io/File.java" root0="SKIP_INSPECTION" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -69,19 +84,22 @@
     &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH&quot;: &quot;331&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;AddGUI&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/huy/DUT/Main/PBL4/SamplePBL/Internet-Download-Manager&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/huy/DUT/Main/PBL4/Work/FileDownloadBooster&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\huy\DUT\Main\PBL4\Work\FileDownloadBooster\src\GUI" />
+      <recent name="D:\huy\DUT\Main\PBL4\Work\FileDownloadBooster\src\Utils\GUI" />
       <recent name="D:\huy\DUT\Main\PBL4\Work\FileDownloadBooster\src\Frontend" />
     </key>
   </component>
@@ -143,6 +161,16 @@
       <workItem from="1699956743647" duration="701000" />
       <workItem from="1699979212950" duration="1055000" />
       <workItem from="1700007638237" duration="500000" />
+      <workItem from="1700061194198" duration="872000" />
+      <workItem from="1700126898831" duration="22935000" />
+      <workItem from="1700187346818" duration="7687000" />
+      <workItem from="1700205169203" duration="5750000" />
+      <workItem from="1700218405293" duration="18332000" />
+      <workItem from="1700285766339" duration="602000" />
+      <workItem from="1700351772638" duration="1940000" />
+      <workItem from="1700362350998" duration="4699000" />
+      <workItem from="1700445774430" duration="127000" />
+      <workItem from="1700488611173" duration="701000" />
     </task>
     <task id="LOCAL-00001" summary="đã gửi được 2 request: 1 head request để lấy header và 1 get request để lấy file">
       <option name="closed" value="true" />
@@ -200,7 +228,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699979406661</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="add main gui">
+      <option name="closed" value="true" />
+      <created>1700061273015</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1700061273016</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

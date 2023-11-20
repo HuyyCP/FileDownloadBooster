@@ -1,17 +1,16 @@
 package GUI;
 
-import BLL.DownloadStatus;
 import BLL.FileDownloader;
 
 import java.util.*;
 import javax.swing.*;
 import javax.swing.table.*;
 
-class DownloadsTableModel extends AbstractTableModel implements Observer
+public class DownloadsTableModel extends AbstractTableModel implements Observer
 {
     private static final String[] columnNames = {"Order", "Filename", "Progress", "Status"};
     private static final Class[] columnClasses = {String.class, String.class, JProgressBar.class, String.class};
-    private static final String[] STATUSES = {"REDIRECTING","WAITING", "DOWNLOADING", "PAUSED", "CANCELLED", "COMPLETED"};
+    private static final String[] STATUSES = {"REDIRECTING","WAITING", "DOWNLOADING", "PAUSED", "CANCELLED", "COMPLETED", "ERROR"};
     private ArrayList<FileDownloader> downloadList = new ArrayList<>();
 
     public void addDownload(FileDownloader download) {
@@ -57,7 +56,7 @@ class DownloadsTableModel extends AbstractTableModel implements Observer
             case 3: // Status
                 return DownloadsTableModel.STATUSES[download.getStatus().ordinal()];
         }
-        return "";
+        return null;
     }
 
 

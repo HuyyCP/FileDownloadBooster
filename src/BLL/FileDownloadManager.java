@@ -1,5 +1,10 @@
 package BLL;
 
+import Utils.Data.DownloadStatus;
+import Utils.Data.FragmentWatcher;
+import Utils.Data.IOStreamHelper;
+import static Utils.Data.Constants.NUMTHREADS;
+
 import javax.net.ssl.SSLSocketFactory;
 import java.io.*;
 import java.net.*;
@@ -8,13 +13,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.*;
 
+
 public class FileDownloadManager {
-    private final int numThreads = 10;
-    private final int corePoolSize = numThreads; // minimum number of threads run simultaneously
-    private final int maximumPoolSize = numThreads * 3; // maximum number of threads run simultaneously
+    private final int corePoolSize = NUMTHREADS; // minimum number of threads run simultaneously
+    private final int maximumPoolSize = NUMTHREADS * 3; // maximum number of threads run simultaneously
     private final long keepAliveTime = 10L; // time to live while not running (threads = maximumPoolSize - coorePoolSize)
     private final TimeUnit unit = TimeUnit.SECONDS;
-    private final int queueSize = numThreads * 3;
+    private final int queueSize = NUMTHREADS * 3;
     private final ArrayBlockingQueue<Runnable> workQueue; // queue of runnable tasks
     private final RejectedExecutionHandler handler; // handle rejected execution
     private ThreadPoolExecutor executor; // multithread manager
@@ -111,19 +116,20 @@ public class FileDownloadManager {
             // Calculate download range
             System.out.println("\nDownloading file...");
             long fileSize = Long.parseLong(headers.get("content-length"));
-            long partSize = fileSize / numThreads;
+            long partSize = fileSize / NUMTHREADS;
             fileDownloader.setFileSize(fileSize);
             
             // Multipart download
             List<Future<Long>> futures = new ArrayList<>();
-            for (int i = 0; i < numThreads; i++) {
+            for (int i = 0; i < NUMTHREADS; i++) {
                 // Range to download
                 long startByte = i * partSize;
-                long endByte = (i == numThreads - 1) ? fileSize - 1 : startByte + partSize - 1;
+                long endByte = (i == NUMTHREADS - 1) ? fileSize - 1 : startByte + partSize - 1;
 
                 // Download by range
-                FragmentDownloader fragmentDownloader = new FragmentDownloader(i + 1, url, fileDownloader.getSavePath(), startByte, endByte - startByte + 1);
+                FragmentDownloader fragmentDownloader = new FragmentDownloader(fileDownloader.getID(), i + 1, url, fileDownloader.getSavePath(), startByte, endByte - startByte + 1);
                 fragmentDownloader.addObserver(fileDownloader);
+                fileDownloader.addFragmentView(fragmentDownloader, i);
                 Future<Long> future = executor.submit(fragmentDownloader);
                 futures.add(future);
             }
@@ -139,8 +145,14 @@ public class FileDownloadManager {
             }
 
             System.out.println("Total bytes read: " + totalBytesRead);
-            System.out.println("File has been successfully downloaded.\n\n");
-            fileDownloader.setStatus(DownloadStatus.COMPLETED);
+            if(totalBytesRead == fileDownloader.getFileSize()) {
+                System.out.println("File has been successfully downloaded.\n\n");
+                fileDownloader.setStatus(DownloadStatus.COMPLETED);
+            } else {
+                System.out.println("Lost of data.\n\n");
+                fileDownloader.setStatus(DownloadStatus.ERROR);
+            }
+
 //            executor.shutdown();
         } catch (IOException exception) {
             System.out.println("Connection closed");
