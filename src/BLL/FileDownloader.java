@@ -42,14 +42,8 @@ public class FileDownloader extends Observable implements Observer {
         FragmentDownloader fragmentDownloader = (FragmentDownloader) o;
         if(fragmentDownloader.getStatus() == DownloadStatus.DOWNLOADING) {
             downloadedBytes += (int) arg;
-//            fragmentWatchers.elementAt(fragmentDownloader.getThreadID()).update(fragmentDownloader);
-//            setChanged();
-//            notifyObservers();
-            System.out.print("Downloaded process: " + downloadedBytes * 100 / fileSize + " %\r");
         }
-//        else if (fragmentDownloader.getStatus() == DownloadStatus.COMPLETED) {
-//            fragmentWatchers.elementAt(fragmentDownloader.getThreadID()).update(fragmentDownloader);
-//        }
+        System.out.print("Downloaded process: " + downloadedBytes * 100 / fileSize + " %\r");
         fragmentWatchers.elementAt(fragmentDownloader.getThreadID() - 1).update(fragmentDownloader);
         setChanged();
         notifyObservers(fragmentDownloader.getThreadID() - 1);

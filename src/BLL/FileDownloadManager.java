@@ -145,7 +145,6 @@ public class FileDownloadManager {
                         watchers.elementAt(i).getDownloaded());
                 fragmentDownloader.addObserver(fileDownloader);
                 watchers.elementAt(i).addObserver(fragmentDownloader);
-//                fileDownloader.addFragmentView(fragmentDownloader, i);
                 Future<Long> future = executor.submit(fragmentDownloader);
                 futures.add(future);
             }

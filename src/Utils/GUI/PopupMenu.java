@@ -94,8 +94,14 @@ public class PopupMenu extends JPopupMenu {
         if (fileDownloader != null) {
             DownloadStatus status = fileDownloader.getStatus();
             switch (status) {
-                case DOWNLOADING, REDIRECTING:
+                case DOWNLOADING:
                     pauseItem.setEnabled(true);
+                    resumeItem.setEnabled(false);
+                    cancelItem.setEnabled(true);
+                    clearItem.setEnabled(false);
+                    break;
+                case REDIRECTING:
+                    pauseItem.setEnabled(false);
                     resumeItem.setEnabled(false);
                     cancelItem.setEnabled(true);
                     clearItem.setEnabled(false);

@@ -28,11 +28,6 @@ public class DownloadsTableModel extends AbstractTableModel implements Observer
         return downloadList.get(row);
     }
 
-    public void clearDownload(int row) {
-        downloadList.remove(row);
-        fireTableRowsDeleted(row, row);
-    }
-
     public int getColumnCount() {
         return columnNames.length;
     }
@@ -63,7 +58,6 @@ public class DownloadsTableModel extends AbstractTableModel implements Observer
         }
         return null;
     }
-
 
     public void update(Observable o, Object arg) {
         int index = downloadList.indexOf(o);

@@ -98,7 +98,7 @@ public class FragmentDownloader extends Observable implements Callable<Long>, Ob
             file.seek(offset + downloaded);
 
             while(true) {
-                Thread.sleep(1);
+                Thread.sleep(7);
                 if(downloaded < length && downloadStatus == DownloadStatus.DOWNLOADING) {
                     // Read data from inputStream
                     bytesRead = inputStream.read(buffer);

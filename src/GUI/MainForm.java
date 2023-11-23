@@ -60,7 +60,6 @@ public class MainForm extends JFrame
         ProgressRenderer renderer = new ProgressRenderer(0, 100);
         renderer.setStringPainted(true);
         table.setDefaultRenderer(JProgressBar.class, renderer);
-//        table.setRowHeight((int) renderer.getPreferredSize().getHeight());
         table.setRowHeight(30);
 
         JTableHeader header = table.getTableHeader();
@@ -70,13 +69,6 @@ public class MainForm extends JFrame
 
         TableColumn orderColumn = table.getColumn("Order");
         orderColumn.setMaxWidth(50);
-
-//        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-//            public void valueChanged(ListSelectionEvent le) {
-//                tableSelectionChanged();
-//            }
-//        });
-
 
         // Init downloads panel
         JPanel downloadsPanel = new JPanel();
@@ -157,16 +149,6 @@ public class MainForm extends JFrame
             return null;
         return verifiedUrl;
     }
-
-//    private void tableSelectionChanged() {
-//        if (selectedDownload != null)
-//            selectedDownload.deleteObserver(MainForm.this);
-//        if (!clearing && table.getSelectedRow() > -1) {
-//            selectedDownload = tableModel.getDownload(table.getSelectedRow());
-//            selectedDownload.addObserver(MainForm.this);
-//            updateButtons();
-//        }
-//    }
 
     public void run() {
         Thread thread = new Thread(() -> {
