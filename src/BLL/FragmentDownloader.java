@@ -97,15 +97,22 @@ public class FragmentDownloader extends Observable implements Callable<Long>, Ob
             int bytesRead;
             file.seek(offset + downloaded);
 
-            while(downloaded < length && downloadStatus == DownloadStatus.DOWNLOADING) {
-                // Read data from inputStream
-                bytesRead = inputStream.read(buffer);
-                file.write(buffer, 0, bytesRead);
-                downloaded += bytesRead;
+            while(true) {
+                Thread.sleep(1);
+                if(downloaded < length && downloadStatus == DownloadStatus.DOWNLOADING) {
+                    // Read data from inputStream
+                    bytesRead = inputStream.read(buffer);
+                    file.write(buffer, 0, bytesRead);
+                    downloaded += bytesRead;
 
-                // Update bytesRead to FileDownloader
-                setChanged();
-                notifyObservers(bytesRead);
+                    // Update bytesRead to FileDownloader
+                    setChanged();
+                    notifyObservers(bytesRead);
+                } else if(downloadStatus == DownloadStatus.PAUSED) {
+
+                } else {
+                    break;
+                }
             }
 
             // Close connection
@@ -120,7 +127,7 @@ public class FragmentDownloader extends Observable implements Callable<Long>, Ob
             System.out.println("\u001B[32m" + "Thread " + threadID + " finished: " + downloaded + " bytes" + "\u001B[0m");
             return downloaded;
         } catch (Exception exception) {
-
+            setStatus(DownloadStatus.ERROR);
             System.out.println("Thread " + threadID + " stopped");
         }
         return 0L;

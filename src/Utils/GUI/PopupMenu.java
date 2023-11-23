@@ -71,7 +71,7 @@ public class PopupMenu extends JPopupMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 fileDownloader.setStatus(DownloadStatus.DOWNLOADING);
-                fileDownloadManager.downloadFile(fileDownloader);
+//                fileDownloadManager.downloadFile(fileDownloader);
             }
         });
 

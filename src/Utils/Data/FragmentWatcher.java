@@ -12,9 +12,9 @@ public class FragmentWatcher extends Observable{
     private long downloadedBytes;
     private DownloadStatus status;
     private boolean isNewDownload;
-    public FragmentWatcher(int fileDownloaderID) {
+    public FragmentWatcher(int fileDownloaderID, int threadID) {
         this.fileDownloaderID = fileDownloaderID;
-        this.threadID = 0;
+        this.threadID = threadID;
         this.offset = 0;
         this.fragmentSize = 0;
         this.downloadedBytes = 0;
@@ -37,6 +37,7 @@ public class FragmentWatcher extends Observable{
     public DownloadStatus getStatus() {
         return status;
     }
+
     public void setStatus (DownloadStatus status) {
         this.status = status;
         setChanged();
@@ -50,6 +51,7 @@ public class FragmentWatcher extends Observable{
     public long getFragmentSize() {
         return this.fragmentSize;
     }
+
     public void setDownloadRange(long startBytes, long endBytes) {
         this.offset = startBytes;
         this.fragmentSize = endBytes - startBytes + 1;
@@ -62,6 +64,7 @@ public class FragmentWatcher extends Observable{
     public int getProgress() {
         return this.fragmentSize == 0 ? 0 : (int)(this.downloadedBytes * 100 / this.fragmentSize);
     }
+
     public void setFragmentView(FragmentDownloader fragmentDownloader) {
         addObserver(fragmentDownloader);
         if(!isNewDownload) {

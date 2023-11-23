@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8730fa2a-a8c0-4446-aa44-708441f24bb2" name="Changes" comment="add detail gui and pop up menu">
+    <list default="true" id="8730fa2a-a8c0-4446-aa44-708441f24bb2" name="Changes" comment="add pause, cancel, clear action">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BLL/FileDownloadManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FileDownloadManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BLL/FileDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FileDownloader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BLL/FragmentDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FragmentDownloader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/DownloadsTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/DownloadsTableModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/FigureTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/FigureTableModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/MainForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/MainForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Utils/Data/FragmentWatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Data/FragmentWatcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Utils/GUI/PopupMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/GUI/PopupMenu.java" afterDir="false" />
     </list>
@@ -82,7 +79,7 @@
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "331",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "AddAction",
-    "last_opened_file_path": "D:/huy/DUT/Main/PBL4/SamplePBL/Internet-Download-Manager",
+    "last_opened_file_path": "D:/huy/DUT/Main/PBL4/Work/FileDownloadBooster",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -175,7 +172,10 @@
       <workItem from="1700631769328" duration="13339000" />
       <workItem from="1700660884646" duration="4714000" />
       <workItem from="1700697668835" duration="5388000" />
-      <workItem from="1700705342944" duration="3712000" />
+      <workItem from="1700705342944" duration="6215000" />
+      <workItem from="1700719010248" duration="2411000" />
+      <workItem from="1700722381368" duration="1763000" />
+      <workItem from="1700733769167" duration="2932000" />
     </task>
     <task id="LOCAL-00001" summary="đã gửi được 2 request: 1 head request để lấy header và 1 get request để lấy file">
       <option name="closed" value="true" />
@@ -241,7 +241,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700061273016</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add pause, cancel, clear action">
+      <option name="closed" value="true" />
+      <created>1700710925898</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1700710925898</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -269,6 +277,7 @@
     <MESSAGE value="optimize IOStreamHelper, not handle redirect yet" />
     <MESSAGE value="add main gui" />
     <MESSAGE value="add detail gui and pop up menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="add detail gui and pop up menu" />
+    <MESSAGE value="add pause, cancel, clear action" />
+    <option name="LAST_COMMIT_MESSAGE" value="add pause, cancel, clear action" />
   </component>
 </project>

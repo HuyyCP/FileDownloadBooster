@@ -31,7 +31,7 @@ public class FileDownloader extends Observable implements Observer {
         this.status = DownloadStatus.WAITING;
         this.fragmentWatchers = new Vector<>();
         for(int i = 0; i < NUMTHREADS; i++) {
-            FragmentWatcher fragmentWatcher = new FragmentWatcher(this.ID);
+            FragmentWatcher fragmentWatcher = new FragmentWatcher(this.ID, i + 1);
             this.fragmentWatchers.add(fragmentWatcher);
         }
         System.out.println("Savepath: " + this.savePath);
