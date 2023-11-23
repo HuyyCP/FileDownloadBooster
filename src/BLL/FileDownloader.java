@@ -31,7 +31,7 @@ public class FileDownloader extends Observable implements Observer {
         this.status = DownloadStatus.WAITING;
         this.fragmentWatchers = new Vector<>();
         for(int i = 0; i < NUMTHREADS; i++) {
-            FragmentWatcher fragmentWatcher = new FragmentWatcher(this.ID);
+            FragmentWatcher fragmentWatcher = new FragmentWatcher(this.ID, i + 1);
             this.fragmentWatchers.add(fragmentWatcher);
         }
         System.out.println("Savepath: " + this.savePath);
@@ -42,14 +42,8 @@ public class FileDownloader extends Observable implements Observer {
         FragmentDownloader fragmentDownloader = (FragmentDownloader) o;
         if(fragmentDownloader.getStatus() == DownloadStatus.DOWNLOADING) {
             downloadedBytes += (int) arg;
-//            fragmentWatchers.elementAt(fragmentDownloader.getThreadID()).update(fragmentDownloader);
-//            setChanged();
-//            notifyObservers();
-            System.out.print("Downloaded process: " + downloadedBytes * 100 / fileSize + " %\r");
         }
-//        else if (fragmentDownloader.getStatus() == DownloadStatus.COMPLETED) {
-//            fragmentWatchers.elementAt(fragmentDownloader.getThreadID()).update(fragmentDownloader);
-//        }
+        System.out.print("Downloaded process: " + downloadedBytes * 100 / fileSize + " %\r");
         fragmentWatchers.elementAt(fragmentDownloader.getThreadID() - 1).update(fragmentDownloader);
         setChanged();
         notifyObservers(fragmentDownloader.getThreadID() - 1);
@@ -85,8 +79,10 @@ public class FileDownloader extends Observable implements Observer {
 
     public void setStatus(DownloadStatus status) {
         this.status = status;
+        for(FragmentWatcher watcher : fragmentWatchers) {
+            watcher.setStatus(this.status);
+        }
         setChanged();
-
         notifyObservers();
     }
 
@@ -104,5 +100,10 @@ public class FileDownloader extends Observable implements Observer {
 
     public Vector<FragmentWatcher> getFragmentWatchers() {
         return this.fragmentWatchers;
+    }
+    public void removeFragmentView() {
+        for(FragmentWatcher watcher : this.fragmentWatchers) {
+            watcher.deleteObservers();
+        }
     }
 }

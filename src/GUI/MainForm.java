@@ -60,7 +60,6 @@ public class MainForm extends JFrame
         ProgressRenderer renderer = new ProgressRenderer(0, 100);
         renderer.setStringPainted(true);
         table.setDefaultRenderer(JProgressBar.class, renderer);
-//        table.setRowHeight((int) renderer.getPreferredSize().getHeight());
         table.setRowHeight(30);
 
         JTableHeader header = table.getTableHeader();
@@ -70,13 +69,6 @@ public class MainForm extends JFrame
 
         TableColumn orderColumn = table.getColumn("Order");
         orderColumn.setMaxWidth(50);
-
-//        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-//            public void valueChanged(ListSelectionEvent le) {
-//                tableSelectionChanged();
-//            }
-//        });
-
 
         // Init downloads panel
         JPanel downloadsPanel = new JPanel();
@@ -118,7 +110,7 @@ public class MainForm extends JFrame
                 if (rowIndex < 0)
                     return;
                 if (e.isPopupTrigger() && e.getComponent() instanceof JTable ) {
-                    popupMenu = new PopupMenu(rowIndex, table, tableModel);
+                    popupMenu = new PopupMenu(rowIndex, table, tableModel, fileDownloadManager);
                     popupMenu.show(e.getComponent(), e.getX(), e.getY());
                 }
             }
@@ -158,16 +150,6 @@ public class MainForm extends JFrame
         return verifiedUrl;
     }
 
-//    private void tableSelectionChanged() {
-//        if (selectedDownload != null)
-//            selectedDownload.deleteObserver(MainForm.this);
-//        if (!clearing && table.getSelectedRow() > -1) {
-//            selectedDownload = tableModel.getDownload(table.getSelectedRow());
-//            selectedDownload.addObserver(MainForm.this);
-//            updateButtons();
-//        }
-//    }
-
     public void run() {
         Thread thread = new Thread(() -> {
             while(true) {
@@ -178,8 +160,10 @@ public class MainForm extends JFrame
                 }
                 for(int i = 0; i < tableModel.getRowCount(); i++) {
                     if(tableModel.getDownload(i).getStatus() == DownloadStatus.WAITING) {
-                        fileDownloadManager.downloadFile(tableModel.getDownload(i));
-//                        break;
+                        FileDownloader selectedDownloader = tableModel.getDownload(i);
+                        fileDownloadManager.handleRedirectURL(selectedDownloader);
+                        fileDownloadManager.HandleFragmentation(selectedDownloader);
+                        fileDownloadManager.downloadFile(selectedDownloader);
                     }
                 }
             }

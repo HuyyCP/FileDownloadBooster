@@ -1,16 +1,11 @@
 package GUI;
 
 import BLL.FileDownloader;
-import BLL.FragmentDownloader;
 import Utils.Data.FragmentWatcher;
 
-import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Vector;
-
-import static Utils.Data.Constants.NUMTHREADS;
 
 public class FigureTableModel extends AbstractTableModel implements Observer {
     private static final String[] columnNames = {"Thread ID", "Start byte", "Fragment size", "Downloaded bytes", "Status"};
@@ -48,7 +43,7 @@ public class FigureTableModel extends AbstractTableModel implements Observer {
             case 0: // Thread ID
                 return fragmentWatcher.getThreadID();
             case 1: // Start byte
-                return fragmentWatcher.getStartByte();
+                return fragmentWatcher.getOffset();
             case 2: // Fragment Size
                 return fragmentWatcher.getFragmentSize();
             case 3: // Downloaded bytes

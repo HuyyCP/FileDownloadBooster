@@ -19,13 +19,13 @@ public class DownloadsTableModel extends AbstractTableModel implements Observer
         fireTableRowsInserted(getRowCount() - 1, getRowCount() - 1);
     }
 
-    public FileDownloader getDownload(int row) {
-        return downloadList.get(row);
+    public void removeDownload(int index) {
+        downloadList.remove(index);
+        fireTableRowsDeleted(getRowCount() - 1, getRowCount() - 1);
     }
 
-    public void clearDownload(int row) {
-        downloadList.remove(row);
-        fireTableRowsDeleted(row, row);
+    public FileDownloader getDownload(int row) {
+        return downloadList.get(row);
     }
 
     public int getColumnCount() {
@@ -58,7 +58,6 @@ public class DownloadsTableModel extends AbstractTableModel implements Observer
         }
         return null;
     }
-
 
     public void update(Observable o, Object arg) {
         int index = downloadList.indexOf(o);
