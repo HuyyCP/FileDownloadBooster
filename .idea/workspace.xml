@@ -4,19 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8730fa2a-a8c0-4446-aa44-708441f24bb2" name="Changes" comment="add main gui">
+    <list default="true" id="8730fa2a-a8c0-4446-aa44-708441f24bb2" name="Changes" comment="add detail gui and pop up menu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileDownloadBooster.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FileDownloadBooster.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BLL/DownloadStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Data/DownloadStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BLL/FileDownloadBooster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FileDownloadBooster.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BLL/FileDownloadManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FileDownloadManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BLL/FileDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FileDownloader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BLL/FragmentDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FragmentDownloader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BLL/IOStreamHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Data/IOStreamHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/DetailProgress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/DetailProgress.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/DownloadsTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/DownloadsTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/FigureTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/FigureTableModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/MainForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/MainForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/ProgressRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/GUI/ProgressRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Data/FragmentWatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Data/FragmentWatcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/GUI/PopupMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/GUI/PopupMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +23,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -54,11 +50,13 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="jar://C:/Program Files/Java/jdk-21/lib/src.zip!/java.base/java/io/BufferedReader.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://C:/Program Files/Java/jdk-21/lib/src.zip!/java.base/java/io/File.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/BLL/FileDownloadManager.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -71,31 +69,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW&quot;: &quot;true&quot;,
-    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH&quot;: &quot;331&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;AddGUI&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/huy/DUT/Main/PBL4/Work/FileDownloadBooster&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "331",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "AddAction",
+    "last_opened_file_path": "D:/huy/DUT/Main/PBL4/SamplePBL/Internet-Download-Manager",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\huy\DUT\Main\PBL4\Work\FileDownloadBooster\src\GUI" />
@@ -171,6 +169,13 @@
       <workItem from="1700362350998" duration="4699000" />
       <workItem from="1700445774430" duration="127000" />
       <workItem from="1700488611173" duration="701000" />
+      <workItem from="1700549612438" duration="1250000" />
+      <workItem from="1700571795668" duration="6537000" />
+      <workItem from="1700618212646" duration="1455000" />
+      <workItem from="1700631769328" duration="13339000" />
+      <workItem from="1700660884646" duration="4714000" />
+      <workItem from="1700697668835" duration="5388000" />
+      <workItem from="1700705342944" duration="3712000" />
     </task>
     <task id="LOCAL-00001" summary="đã gửi được 2 request: 1 head request để lấy header và 1 get request để lấy file">
       <option name="closed" value="true" />
@@ -263,6 +268,7 @@
     <MESSAGE value="đã đa luồng, chỉ chạy ổn với httpsURL,  đôi khi file bị lỗi nhưng vẫn xem được, đôi khi thì không, cần xử lí 303, cần tối ưu đọc req" />
     <MESSAGE value="optimize IOStreamHelper, not handle redirect yet" />
     <MESSAGE value="add main gui" />
-    <option name="LAST_COMMIT_MESSAGE" value="add main gui" />
+    <MESSAGE value="add detail gui and pop up menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="add detail gui and pop up menu" />
   </component>
 </project>

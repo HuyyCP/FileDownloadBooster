@@ -1,8 +1,10 @@
 package Utils.GUI;
 
+import BLL.FileDownloadManager;
 import BLL.FileDownloader;
 import GUI.DetailForm;
 import GUI.DownloadsTableModel;
+import Utils.Data.DownloadStatus;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -18,15 +20,18 @@ public class PopupMenu extends JPopupMenu {
     JTable table;
     int rowIndex;
     DownloadsTableModel tableModel;
+    FileDownloadManager fileDownloadManager;
     DetailForm detailForm;
-    public PopupMenu(int rowIndex, JTable table, DownloadsTableModel tableModel) {
+    public PopupMenu(int rowIndex, JTable table, DownloadsTableModel tableModel, FileDownloadManager fileDownloadManager) {
         super();
         this.rowIndex = rowIndex;
         this.tableModel = tableModel;
+        this.fileDownloadManager = fileDownloadManager;
         this.fileDownloader = this.tableModel.getDownload(rowIndex);
         this.table = table;
         InitUI();
         AddListener();
+        UpdateButtons();
     }
     private void InitUI() {
         detailItem = new JMenuItem("Detail");
@@ -58,29 +63,55 @@ public class PopupMenu extends JPopupMenu {
         pauseItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Pause selected");
+                fileDownloader.setStatus(DownloadStatus.PAUSED);
             }
         });
 
         resumeItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Resume selected");
+                fileDownloader.setStatus(DownloadStatus.DOWNLOADING);
+                fileDownloadManager.downloadFile(fileDownloader);
             }
         });
 
         cancelItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Cancel selected");
+                fileDownloader.setStatus(DownloadStatus.CANCELLED);
             }
         });
 
         clearItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Clear selected");
+                tableModel.removeDownload(rowIndex);
             }
         });
+    }
+
+    private void UpdateButtons() {
+        if (fileDownloader != null) {
+            DownloadStatus status = fileDownloader.getStatus();
+            switch (status) {
+                case DOWNLOADING, REDIRECTING:
+                    pauseItem.setEnabled(true);
+                    resumeItem.setEnabled(false);
+                    cancelItem.setEnabled(true);
+                    clearItem.setEnabled(false);
+                    break;
+                case PAUSED:
+                    pauseItem.setEnabled(false);
+                    resumeItem.setEnabled(true);
+                    cancelItem.setEnabled(true);
+                    clearItem.setEnabled(false);
+                    break;
+                default: // COMPLETE or CANCELLED or ERROR or WAITING
+                    pauseItem.setEnabled(false);
+                    resumeItem.setEnabled(false);
+                    cancelItem.setEnabled(false);
+                    clearItem.setEnabled(true);
+            }
+        }
     }
 }

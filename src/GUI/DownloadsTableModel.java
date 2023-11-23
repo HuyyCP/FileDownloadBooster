@@ -19,6 +19,11 @@ public class DownloadsTableModel extends AbstractTableModel implements Observer
         fireTableRowsInserted(getRowCount() - 1, getRowCount() - 1);
     }
 
+    public void removeDownload(int index) {
+        downloadList.remove(index);
+        fireTableRowsDeleted(getRowCount() - 1, getRowCount() - 1);
+    }
+
     public FileDownloader getDownload(int row) {
         return downloadList.get(row);
     }

@@ -118,7 +118,7 @@ public class MainForm extends JFrame
                 if (rowIndex < 0)
                     return;
                 if (e.isPopupTrigger() && e.getComponent() instanceof JTable ) {
-                    popupMenu = new PopupMenu(rowIndex, table, tableModel);
+                    popupMenu = new PopupMenu(rowIndex, table, tableModel, fileDownloadManager);
                     popupMenu.show(e.getComponent(), e.getX(), e.getY());
                 }
             }
@@ -178,8 +178,10 @@ public class MainForm extends JFrame
                 }
                 for(int i = 0; i < tableModel.getRowCount(); i++) {
                     if(tableModel.getDownload(i).getStatus() == DownloadStatus.WAITING) {
-                        fileDownloadManager.downloadFile(tableModel.getDownload(i));
-//                        break;
+                        FileDownloader selectedDownloader = tableModel.getDownload(i);
+                        fileDownloadManager.handleRedirectURL(selectedDownloader);
+                        fileDownloadManager.HandleFragmentation(selectedDownloader);
+                        fileDownloadManager.downloadFile(selectedDownloader);
                     }
                 }
             }

@@ -11,6 +11,7 @@ import java.net.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 import java.util.concurrent.*;
 
 
@@ -29,11 +30,11 @@ public class FileDownloadManager {
         this.handler = new ThreadPoolExecutor.CallerRunsPolicy();
         this.executor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, handler);
     }
-    public void handleRedirectURL(FileDownloader fileDownloader) throws URISyntaxException {
+    public void handleRedirectURL(FileDownloader fileDownloader) {
         System.out.println("Handling redirect URL...");
         URL url = fileDownloader.getURL();
         fileDownloader.setStatus(DownloadStatus.REDIRECTING);
-        String responseCode = "";
+        String responseCode;
         do {
             try (Socket socket = url.getProtocol().equals("https") ? SSLSocketFactory.getDefault().createSocket(url.getHost(), 443) : new Socket(url.getHost(), 80);
                  BufferedInputStream inputStream = new BufferedInputStream(socket.getInputStream());
@@ -58,17 +59,20 @@ public class FileDownloadManager {
                 // Handle redirect
                 String statusLine = headers.get("status");
                 responseCode = statusLine.substring(statusLine.indexOf(" ") + 1, statusLine.indexOf(" ") + 4);
-                if(responseCode.equals("200")) {
+                if (responseCode.equals("200")) {
                     break;
-                } else if(responseCode.startsWith("3")) {
+                } else if (responseCode.startsWith("3")) {
                     String location = headers.get("location");
                     url = new URI(location).toURL();
                 }
             } catch (IOException exception) {
+                fileDownloader.setStatus(DownloadStatus.ERROR);
                 System.out.println(exception.getMessage());
                 System.out.println("Handle redirect failed");
+            } catch (URISyntaxException e) {
+
             }
-        } while(true);
+        } while (true);
         fileDownloader.setURL(url);
         try {
             Thread.sleep(1000);
@@ -78,13 +82,7 @@ public class FileDownloadManager {
         fileDownloader.setStatus(DownloadStatus.DOWNLOADING);
     }
 
-    public void downloadFile(FileDownloader fileDownloader) {
-        // Handle redirect URL
-        try {
-            handleRedirectURL(fileDownloader);
-        }  catch(URISyntaxException e) {
-
-        }
+    public void HandleFragmentation(FileDownloader fileDownloader) {
         URL url = fileDownloader.getURL();
         System.out.println("\nFinal URL: " + url);
 
@@ -93,14 +91,13 @@ public class FileDownloadManager {
         String host = url.getHost();
         String path = url.getPath();
 
-        // Create a socket connection
         try (Socket socket = protocol.equals("https") ? SSLSocketFactory.getDefault().createSocket(host, 443) : new Socket(host, 80);
              BufferedInputStream inputStream = new BufferedInputStream(socket.getInputStream());
              BufferedOutputStream outputStream = new BufferedOutputStream(socket.getOutputStream()))
         {
             // Create a http HEAD request
             String headRequest = "HEAD " + path + " HTTP/1.1\r\n" +
-                                   "Host: " + host + "\r\n\r\n";
+                    "Host: " + host + "\r\n\r\n";
 
             // Send request to server
             IOStreamHelper.sendRequest(outputStream, headRequest);
@@ -114,21 +111,40 @@ public class FileDownloadManager {
             socket.close();
 
             // Calculate download range
-            System.out.println("\nDownloading file...");
+            System.out.println("\nFragmenting...");
             long fileSize = Long.parseLong(headers.get("content-length"));
             long partSize = fileSize / NUMTHREADS;
             fileDownloader.setFileSize(fileSize);
-            
-            // Multipart download
-            List<Future<Long>> futures = new ArrayList<>();
+
+            Vector<FragmentWatcher> watchers = fileDownloader.getFragmentWatchers();
+            // Fragmenting file
             for (int i = 0; i < NUMTHREADS; i++) {
                 // Range to download
                 long startByte = i * partSize;
                 long endByte = (i == NUMTHREADS - 1) ? fileSize - 1 : startByte + partSize - 1;
+                watchers.elementAt(i).setDownloadRange(startByte, endByte);
+            }
 
-                // Download by range
-                FragmentDownloader fragmentDownloader = new FragmentDownloader(fileDownloader.getID(), i + 1, url, fileDownloader.getSavePath(), startByte, endByte - startByte + 1);
+        } catch (IOException exception) {
+            System.out.println("Connection closed");
+        }
+    }
+
+    public void downloadFile(FileDownloader fileDownloader) {
+        try {
+            // Multi fragment download
+            Vector<FragmentWatcher> watchers = fileDownloader.getFragmentWatchers();
+            List<Future<Long>> futures = new ArrayList<>();
+            for (int i = 0; i < NUMTHREADS; i++) {
+                FragmentDownloader fragmentDownloader = new FragmentDownloader(fileDownloader.getID(),
+                        i + 1,
+                        fileDownloader.getURL(),
+                        fileDownloader.getSavePath(),
+                        watchers.elementAt(i).getOffset(),
+                        watchers.elementAt(i).getFragmentSize(),
+                        watchers.elementAt(i).getDownloaded());
                 fragmentDownloader.addObserver(fileDownloader);
+//                watchers.elementAt(i).addObserver(fragmentDownloader);
                 fileDownloader.addFragmentView(fragmentDownloader, i);
                 Future<Long> future = executor.submit(fragmentDownloader);
                 futures.add(future);
@@ -136,7 +152,7 @@ public class FileDownloadManager {
 
             // Wait for all threads to finish
             long totalBytesRead = 0;
-            for(Future<Long> future : futures) {
+            for (Future<Long> future : futures) {
                 try {
                     totalBytesRead += future.get();
                 } catch (ExecutionException | InterruptedException e) {
@@ -145,17 +161,13 @@ public class FileDownloadManager {
             }
 
             System.out.println("Total bytes read: " + totalBytesRead);
-            if(totalBytesRead == fileDownloader.getFileSize()) {
+            if (totalBytesRead == fileDownloader.getFileSize()) {
                 System.out.println("File has been successfully downloaded.\n\n");
                 fileDownloader.setStatus(DownloadStatus.COMPLETED);
-            } else {
-                System.out.println("Lost of data.\n\n");
-                fileDownloader.setStatus(DownloadStatus.ERROR);
             }
-
-//            executor.shutdown();
-        } catch (IOException exception) {
-            System.out.println("Connection closed");
+            fileDownloader.removeFragmentView();
+        } catch (Exception e) {
+            System.out.println("Exception in downloading");
         }
     }
 }

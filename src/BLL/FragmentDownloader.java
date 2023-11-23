@@ -1,6 +1,7 @@
 package BLL;
 
 import Utils.Data.DownloadStatus;
+import Utils.Data.FragmentWatcher;
 import Utils.Data.IOStreamHelper;
 
 import javax.net.ssl.SSLSocketFactory;
@@ -8,10 +9,12 @@ import java.io.*;
 import java.net.Socket;
 import java.net.URL;
 import java.util.Observable;
+import java.util.Observer;
 import java.util.concurrent.Callable;
 
-public class FragmentDownloader extends Observable implements Callable<Long> {
-    private final static int bufferSize = 4096; // multiple of 4KB
+import static Utils.Data.Constants.BUFFERSIZE;
+
+public class FragmentDownloader extends Observable implements Callable<Long>, Observer {
     private final int fileDownloaderID;
     private final int threadID;
     private final URL url;
@@ -21,14 +24,14 @@ public class FragmentDownloader extends Observable implements Callable<Long> {
     private long downloaded;
     private DownloadStatus downloadStatus;
 
-    public FragmentDownloader(int fileDownloaderID, int threadID, URL url, String savePath, long offset, long length) {
+    public FragmentDownloader(int fileDownloaderID, int threadID, URL url, String savePath, long offset, long length, long downloaded) {
         this.fileDownloaderID = fileDownloaderID;
         this.threadID = threadID;
         this.url = url;
         this.savePath = savePath;
         this.offset = offset;
         this.length = length;
-        this.downloaded = 0;
+        this.downloaded = downloaded;
         this.downloadStatus = DownloadStatus.DOWNLOADING;
     }
 
@@ -44,7 +47,9 @@ public class FragmentDownloader extends Observable implements Callable<Long> {
         return downloadStatus;
     }
 
-    public long getStartByte() {
+    public void setStatus(DownloadStatus status) {this.downloadStatus = status;}
+
+    public long getOffset() {
         return this.offset;
     }
 
@@ -55,6 +60,8 @@ public class FragmentDownloader extends Observable implements Callable<Long> {
     public long getDownloaded() {
         return this.downloaded;
     }
+
+    public void setDownloaded(long downloaded) { this.downloaded = downloaded;}
 
     public int getProgress() {
         return this.length == 0 ? 0 : (int)(this.downloaded * 100 / this.length);
@@ -74,9 +81,9 @@ public class FragmentDownloader extends Observable implements Callable<Long> {
             // Create request
             String getRequest = "GET " + path + " HTTP/1.1\r\n" +
                     "Host: " + host + "\r\n" +
-                    "Range: bytes=" + offset + "-" + (offset + length - 1) + "\r\n" +
+                    "Range: bytes=" + (offset + downloaded) + "-" + (offset + length - 1) + "\r\n" +
                     "Connection: close\r\n\r\n";
-            System.out.println("Thread " + threadID + " started with offset " + offset + " length " + length);
+            System.out.println("Thread " + threadID + " started with offset " + (offset + downloaded) + " length " + (length - downloaded));
 
             // Send request
             IOStreamHelper.sendRequest(outputStream, getRequest);
@@ -86,7 +93,7 @@ public class FragmentDownloader extends Observable implements Callable<Long> {
 
 
             // Download fragment
-            byte[] buffer = new byte[bufferSize];
+            byte[] buffer = new byte[BUFFERSIZE];
             int bytesRead;
             file.seek(offset + downloaded);
 
@@ -105,15 +112,23 @@ public class FragmentDownloader extends Observable implements Callable<Long> {
             inputStream.close();
             outputStream.close();
             file.close();
-            downloadStatus = DownloadStatus.COMPLETED;
-            setChanged();
-            notifyObservers();
+            if(downloaded == length) {
+                downloadStatus = DownloadStatus.COMPLETED;
+                setChanged();
+                notifyObservers();
+            }
             System.out.println("\u001B[32m" + "Thread " + threadID + " finished: " + downloaded + " bytes" + "\u001B[0m");
             return downloaded;
-        } catch (IOException exception) {
+        } catch (Exception exception) {
+
             System.out.println("Thread " + threadID + " stopped");
         }
         return 0L;
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+        FragmentWatcher watcher = (FragmentWatcher) o;
+        setStatus(watcher.getStatus());
+    }
 }

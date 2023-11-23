@@ -85,8 +85,10 @@ public class FileDownloader extends Observable implements Observer {
 
     public void setStatus(DownloadStatus status) {
         this.status = status;
+        for(FragmentWatcher watcher : fragmentWatchers) {
+            watcher.setStatus(this.status);
+        }
         setChanged();
-
         notifyObservers();
     }
 
@@ -104,5 +106,10 @@ public class FileDownloader extends Observable implements Observer {
 
     public Vector<FragmentWatcher> getFragmentWatchers() {
         return this.fragmentWatchers;
+    }
+    public void removeFragmentView() {
+        for(FragmentWatcher watcher : this.fragmentWatchers) {
+            watcher.deleteObservers();
+        }
     }
 }
