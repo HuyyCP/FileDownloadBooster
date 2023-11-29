@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8730fa2a-a8c0-4446-aa44-708441f24bb2" name="Changes" comment="add resume">
+    <list default="true" id="8730fa2a-a8c0-4446-aa44-708441f24bb2" name="Changes" comment="fix 99% resume">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BLL/FileDownloadBooster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FileDownloadBooster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BLL/FileDownloadManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FileDownloadManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BLL/FileDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FileDownloader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BLL/FragmentDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FragmentDownloader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/DownloadsTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/DownloadsTableModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/MainForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/MainForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Test.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Utils/GUI/PopupMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/GUI/PopupMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,7 +28,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="handleRedirect" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -79,13 +79,13 @@
     "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "331",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "AddAction",
-    "last_opened_file_path": "D:/huy/DUT/Main/PBL4/Work/FileDownloadBooster",
+    "git-widget-placeholder": "optimizeDownload",
+    "last_opened_file_path": "D:/huy/DUT/Main/CNWEB/Work/QuanLiNguoiDungPHP",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager",
@@ -177,6 +177,15 @@
       <workItem from="1700719010248" duration="2411000" />
       <workItem from="1700722381368" duration="1763000" />
       <workItem from="1700733769167" duration="7292000" />
+      <workItem from="1700792463935" duration="1037000" />
+      <workItem from="1700804455524" duration="1257000" />
+      <workItem from="1700875534615" duration="3749000" />
+      <workItem from="1701008972738" duration="600000" />
+      <workItem from="1701085941849" duration="3177000" />
+      <workItem from="1701139427819" duration="37000" />
+      <workItem from="1701140128154" duration="2723000" />
+      <workItem from="1701163378212" duration="2385000" />
+      <workItem from="1701234328388" duration="4674000" />
     </task>
     <task id="LOCAL-00001" summary="đã gửi được 2 request: 1 head request để lấy header và 1 get request để lấy file">
       <option name="closed" value="true" />

@@ -75,11 +75,11 @@ public class FileDownloadManager {
         } while (true);
         fileDownloader.setURL(url);
         try {
-            Thread.sleep(1000);
+            Thread.sleep(10);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        fileDownloader.setStatus(DownloadStatus.DOWNLOADING);
+        fileDownloader.setStatus(DownloadStatus.WAITING);
     }
 
     public void HandleFragmentation(FileDownloader fileDownloader) {
@@ -132,6 +132,7 @@ public class FileDownloadManager {
 
     public void downloadFile(FileDownloader fileDownloader) {
         try {
+            fileDownloader.setStatus(DownloadStatus.DOWNLOADING);
             // Multi fragment download
             Vector<FragmentWatcher> watchers = fileDownloader.getFragmentWatchers();
             List<Future<Long>> futures = new ArrayList<>();
