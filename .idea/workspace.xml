@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="FileDownloadBooster:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8730fa2a-a8c0-4446-aa44-708441f24bb2" name="Changes" comment="fix 99% resume">
+    <list default="true" id="8730fa2a-a8c0-4446-aa44-708441f24bb2" name="Changes" comment="fix resume stop gui">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BLL/FileDownloadBooster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FileDownloadBooster.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BLL/FileDownloadManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FileDownloadManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BLL/FileDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FileDownloader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BLL/FragmentDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FragmentDownloader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/MainForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/MainForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/GUI/PopupMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/GUI/PopupMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +81,7 @@
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "331",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "optimizeDownload",
-    "last_opened_file_path": "D:/huy/DUT/Main/CNWEB/Work/QuanLiNguoiDungPHP",
+    "last_opened_file_path": "D:/huy/DUT/Main/PBL4/Work/FileDownloadBooster",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -185,7 +186,9 @@
       <workItem from="1701139427819" duration="37000" />
       <workItem from="1701140128154" duration="2723000" />
       <workItem from="1701163378212" duration="2385000" />
-      <workItem from="1701234328388" duration="4674000" />
+      <workItem from="1701234328388" duration="7250000" />
+      <workItem from="1701264801010" duration="599000" />
+      <workItem from="1701311063712" duration="1312000" />
     </task>
     <task id="LOCAL-00001" summary="đã gửi được 2 request: 1 head request để lấy header và 1 get request để lấy file">
       <option name="closed" value="true" />
@@ -267,7 +270,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700738598229</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="fix resume stop gui">
+      <option name="closed" value="true" />
+      <created>1701244430444</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1701244430444</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,6 +308,7 @@
     <MESSAGE value="add detail gui and pop up menu" />
     <MESSAGE value="add pause, cancel, clear action" />
     <MESSAGE value="add resume" />
-    <option name="LAST_COMMIT_MESSAGE" value="add resume" />
+    <MESSAGE value="fix resume stop gui" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix resume stop gui" />
   </component>
 </project>

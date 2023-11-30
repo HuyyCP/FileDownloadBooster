@@ -34,6 +34,7 @@ public class FileDownloadManager {
         System.out.println("Handling redirect URL...");
         URL url = fileDownloader.getURL();
         fileDownloader.setStatus(DownloadStatus.REDIRECTING);
+        int loopCount = 0;
         String responseCode;
         do {
             try (Socket socket = url.getProtocol().equals("https") ? SSLSocketFactory.getDefault().createSocket(url.getHost(), 443) : new Socket(url.getHost(), 80);
@@ -59,6 +60,7 @@ public class FileDownloadManager {
                 // Handle redirect
                 String statusLine = headers.get("status");
                 responseCode = statusLine.substring(statusLine.indexOf(" ") + 1, statusLine.indexOf(" ") + 4);
+                loopCount++;
                 if (responseCode.equals("200")) {
                     break;
                 } else if (responseCode.startsWith("3")) {
@@ -72,7 +74,7 @@ public class FileDownloadManager {
             } catch (URISyntaxException e) {
 
             }
-        } while (true);
+        } while (loopCount < 10);
         fileDownloader.setURL(url);
         try {
             Thread.sleep(10);
