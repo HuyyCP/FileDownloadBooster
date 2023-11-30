@@ -105,5 +105,6 @@ public class FileDownloader extends Observable implements Observer {
         for(FragmentWatcher watcher : this.fragmentWatchers) {
             watcher.deleteObservers();
         }
+        System.out.println("Removed fragment binding");
     }
 }

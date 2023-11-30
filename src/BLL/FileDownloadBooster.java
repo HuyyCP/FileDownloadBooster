@@ -25,6 +25,8 @@ public class FileDownloadBooster {
         String mp3URL = "https://sample-videos.com/audio/mp3/wave.mp3"; // pass
         String zipURLpro = "http://212.183.159.230/1GB.zip"; // pass (6mb/s 5p), test lan 2: 3p23s
 
+        String file1mb = "https://sample-videos.com/img/Sample-jpg-image-1mb.jpg";
+        String file10mb = "https://sample-videos.com/img/Sample-jpg-image-10mb.jpg";
         String savePath = "D:\\PBL_Storage\\";
         try {
             FileDownloadManager manager  = new FileDownloadManager();

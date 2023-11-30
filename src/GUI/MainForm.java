@@ -27,9 +27,7 @@ public class MainForm extends JFrame
     private DownloadsTableModel tableModel;
     private JTable table;
     private Button addButton;
-    private FileDownloader selectedDownload;
     private FileDownloadManager fileDownloadManager;
-    private boolean clearing;
     private PopupMenu popupMenu;
 
     public MainForm() {
@@ -161,9 +159,15 @@ public class MainForm extends JFrame
                 for(int i = 0; i < tableModel.getRowCount(); i++) {
                     if(tableModel.getDownload(i).getStatus() == DownloadStatus.WAITING) {
                         FileDownloader selectedDownloader = tableModel.getDownload(i);
-                        fileDownloadManager.handleRedirectURL(selectedDownloader);
-                        fileDownloadManager.HandleFragmentation(selectedDownloader);
-                        fileDownloadManager.downloadFile(selectedDownloader);
+//                        Thread threadDownload = new Thread(() -> {
+                            fileDownloadManager.handleRedirectURL(selectedDownloader);
+                            fileDownloadManager.HandleFragmentation(selectedDownloader);
+                            fileDownloadManager.downloadFile(selectedDownloader);
+//                        });
+//                        threadDownload.start();
+//                        fileDownloadManager.handleRedirectURL(selectedDownloader);
+//                        fileDownloadManager.HandleFragmentation(selectedDownloader);
+//                        fileDownloadManager.downloadFile(selectedDownloader);
                     }
                 }
             }
