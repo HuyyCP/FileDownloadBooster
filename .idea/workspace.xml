@@ -12,7 +12,28 @@
     <list default="true" id="8730fa2a-a8c0-4446-aa44-708441f24bb2" name="Changes" comment="fix resume stop gui">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BLL/FileDownloadManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/FileDownloadManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BLL/FileDownloadBooster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Business/FileDownloadBooster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BLL/FileDownloadManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Business/FileDownloadManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BLL/FileDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Business/FileDownloader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BLL/FragmentDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Business/FragmentDownloader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/DetailForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/DetailForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/DetailProgress.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/DownloadsTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/DownloadsTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/FigureTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/FigureTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/MainForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/MainForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/ProgressTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ProgressTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Data/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Data/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Data/DownloadStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Data/DownloadStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Data/FragmentWatcher.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Data/IOStreamHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Business/IOStreamHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/GUI/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/GUI/Button.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/GUI/CustomScrollbar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/GUI/CustomScrollbar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/GUI/GraphicsUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/GUI/GraphicsUtilities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/GUI/PopupMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/PopupMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/GUI/ProgressRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/GUI/ProgressRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/GUI/RippleEffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/GUI/RippleEffect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/GUI/ShadowRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/GUI/ShadowRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/GUI/TextField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/GUI/TextField.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +50,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="handleRedirect" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -80,8 +101,8 @@
     "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "331",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "optimizeDownload",
-    "last_opened_file_path": "D:/huy/DUT/Main/PBL4/Work/FileDownloadBooster",
+    "git-widget-placeholder": "optimize",
+    "last_opened_file_path": "D:/huy/DUT/Main/PBL4/Work/FileDownloadBooster/src/Utils/GUI",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -89,7 +110,7 @@
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -189,6 +210,15 @@
       <workItem from="1701234328388" duration="7250000" />
       <workItem from="1701264801010" duration="599000" />
       <workItem from="1701311063712" duration="1312000" />
+      <workItem from="1703783307997" duration="817000" />
+      <workItem from="1703784145791" duration="7657000" />
+      <workItem from="1703810786822" duration="1278000" />
+      <workItem from="1703823651094" duration="1380000" />
+      <workItem from="1703845758102" duration="6416000" />
+      <workItem from="1703990286052" duration="1684000" />
+      <workItem from="1704033610364" duration="2088000" />
+      <workItem from="1704072346445" duration="13088000" />
+      <workItem from="1704295579098" duration="326000" />
     </task>
     <task id="LOCAL-00001" summary="đã gửi được 2 request: 1 head request để lấy header và 1 get request để lấy file">
       <option name="closed" value="true" />

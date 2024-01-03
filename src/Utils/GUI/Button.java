@@ -1,15 +1,11 @@
 package Utils.GUI;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Insets;
-import java.awt.RenderingHints;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.geom.Area;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
-import javax.swing.JButton;
-import javax.swing.border.EmptyBorder;
 
 
 public class Button extends JButton {

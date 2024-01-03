@@ -1,11 +1,10 @@
-package BLL;
+package Business;
 
 import Utils.Data.DownloadStatus;
-import Utils.Data.FragmentWatcher;
-import Utils.Data.IOStreamHelper;
-
 import javax.net.ssl.SSLSocketFactory;
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.RandomAccessFile;
 import java.net.Socket;
 import java.net.URL;
 import java.util.Observable;
@@ -112,7 +111,7 @@ public class FragmentDownloader extends Observable implements Callable<Long>, Ob
             inputStream.close();
             outputStream.close();
             file.close();
-            if(downloaded == length) {
+            if(downloaded >= length) {
                 downloadStatus = DownloadStatus.COMPLETED;
                 setChanged();
                 notifyObservers();

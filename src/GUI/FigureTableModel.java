@@ -1,7 +1,7 @@
 package GUI;
 
-import BLL.FileDownloader;
-import Utils.Data.FragmentWatcher;
+import Business.FileDownloader;
+import Business.FragmentWatcher;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.Observable;

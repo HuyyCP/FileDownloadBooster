@@ -1,22 +1,24 @@
 package GUI;
 
-import BLL.FileDownloadManager;
-import BLL.FileDownloader;
+import Business.FileDownloadManager;
+import Business.FileDownloader;
 import Utils.Data.DownloadStatus;
-import Utils.GUI.*;
+import Utils.GUI.Button;
+import Utils.GUI.CustomScrollbar;
+import Utils.GUI.ProgressRenderer;
+import Utils.GUI.TextField;
 import com.formdev.flatlaf.FlatLightLaf;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Dimension;
-import java.awt.BorderLayout;
+
+import javax.swing.*;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.net.*;
-import javax.swing.*;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableColumn;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import static Utils.Data.Constants.*;
 

@@ -1,13 +1,15 @@
 package GUI;
 
-import BLL.FileDownloader;
+import Business.FileDownloader;
 import Utils.GUI.CustomScrollbar;
 import Utils.GUI.ProgressRenderer;
+
 import javax.swing.*;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
 
-import static Utils.Data.Constants.*;
+import static Utils.Data.Constants.TABLEHEADERCOLOR;
+import static Utils.Data.Constants.TEXTCOLOR;
 
 public class DetailForm extends JFrame {
     private JTable progressTable;
