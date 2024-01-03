@@ -1,10 +1,10 @@
-package Utils.Data;
-
-import static Utils.Data.Constants.BUFFERSIZE;
+package Business;
 
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
+
+import static Utils.Data.Constants.BUFFERSIZE;
 
 public class IOStreamHelper {
     public static Map<String,String> receiveHeader (InputStream inputStream) throws IOException {

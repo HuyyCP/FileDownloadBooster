@@ -1,7 +1,6 @@
-package Utils.Data;
+package Business;
 
-import BLL.FragmentDownloader;
-
+import Utils.Data.DownloadStatus;
 import java.util.Observable;
 
 public class FragmentWatcher extends Observable{

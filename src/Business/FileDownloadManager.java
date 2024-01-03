@@ -1,18 +1,21 @@
-package BLL;
+package Business;
 
 import Utils.Data.DownloadStatus;
-import Utils.Data.FragmentWatcher;
-import Utils.Data.IOStreamHelper;
-import static Utils.Data.Constants.NUMTHREADS;
-
 import javax.net.ssl.SSLSocketFactory;
-import java.io.*;
-import java.net.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 import java.util.concurrent.*;
+
+import static Utils.Data.Constants.NUMTHREADS;
 
 
 public class FileDownloadManager {
@@ -75,6 +78,10 @@ public class FileDownloadManager {
 
             }
         } while (loopCount < 10);
+        if(loopCount == 10) {
+            fileDownloader.setStatus(DownloadStatus.ERROR);
+            return;
+        }
         fileDownloader.setURL(url);
         try {
             Thread.sleep(10);
@@ -153,19 +160,19 @@ public class FileDownloadManager {
             }
 
             // Wait for all threads to finish
-            long totalBytesRead = 0;
             for (Future<Long> future : futures) {
                 try {
-                    totalBytesRead += future.get();
+                    future.get();
                 } catch (ExecutionException | InterruptedException e) {
                     e.printStackTrace();
                 }
             }
 
-            System.out.println("Total bytes read: " + totalBytesRead);
-            if (totalBytesRead == fileDownloader.getFileSize()) {
+            System.out.println("Total bytes read: " + fileDownloader.getDownloaded());
+            if (fileDownloader.getDownloaded() >= fileDownloader.getFileSize()) {
                 System.out.println("File has been successfully downloaded.\n\n");
                 fileDownloader.setStatus(DownloadStatus.COMPLETED);
+                return;
             }
             fileDownloader.removeFragmentView();
         } catch (Exception e) {

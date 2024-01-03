@@ -1,8 +1,8 @@
 package Utils.GUI;
 
 import javax.swing.*;
-import javax.swing.table.*;
-import java.awt.Component;
+import javax.swing.table.TableCellRenderer;
+import java.awt.*;
 public class ProgressRenderer extends JProgressBar implements TableCellRenderer {
     public ProgressRenderer(int min, int max) {
         super(min, max);

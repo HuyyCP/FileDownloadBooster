@@ -1,12 +1,10 @@
-package BLL;
+package Business;
 
 import Utils.Data.DownloadStatus;
-import Utils.Data.FragmentWatcher;
-
 import java.io.File;
+import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
-import java.net.URL;
 import java.util.Vector;
 
 import static Utils.Data.Constants.NUMTHREADS;
@@ -63,6 +61,10 @@ public class FileDownloader extends Observable implements Observer {
 
     public long getFileSize() {
         return fileSize;
+    }
+
+    public long getDownloaded() {
+        return downloadedBytes;
     }
 
     public String getSavePath() {

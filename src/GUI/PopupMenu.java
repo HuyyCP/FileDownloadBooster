@@ -1,9 +1,7 @@
-package Utils.GUI;
+package GUI;
 
-import BLL.FileDownloadManager;
-import BLL.FileDownloader;
-import GUI.DetailForm;
-import GUI.DownloadsTableModel;
+import Business.FileDownloadManager;
+import Business.FileDownloader;
 import Utils.Data.DownloadStatus;
 
 import javax.swing.*;
