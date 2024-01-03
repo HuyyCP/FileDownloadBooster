@@ -1,6 +1,6 @@
 package Utils.GUI;
 
-import java.awt.Color;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class ShadowRenderer {

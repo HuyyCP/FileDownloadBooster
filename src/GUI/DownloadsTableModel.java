@@ -1,10 +1,12 @@
 package GUI;
 
-import BLL.FileDownloader;
+import Business.FileDownloader;
 
-import java.util.*;
 import javax.swing.*;
-import javax.swing.table.*;
+import javax.swing.table.AbstractTableModel;
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 public class DownloadsTableModel extends AbstractTableModel implements Observer
 {

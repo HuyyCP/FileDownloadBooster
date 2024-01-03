@@ -1,15 +1,11 @@
 package GUI;
 
-import BLL.FileDownloader;
-import BLL.FragmentDownloader;
-import Utils.Data.FragmentWatcher;
-
+import Business.FileDownloader;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import java.util.Arrays;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Vector;
 
 import static Utils.Data.Constants.NUMTHREADS;
 
